@@ -15,6 +15,7 @@
 		8840247325BACE8500CB1ADF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8840247125BACE8500CB1ADF /* LaunchScreen.storyboard */; };
 		8840247E25BACE8500CB1ADF /* I2SNTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8840247D25BACE8500CB1ADF /* I2SNTests.swift */; };
 		8840248925BACE8500CB1ADF /* I2SNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8840248825BACE8500CB1ADF /* I2SNUITests.swift */; };
+		884024C525BB17C400CB1ADF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884024C425BB17C400CB1ADF /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		8840248425BACE8500CB1ADF /* I2SNUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = I2SNUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8840248825BACE8500CB1ADF /* I2SNUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I2SNUITests.swift; sourceTree = "<group>"; };
 		8840248A25BACE8500CB1ADF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		884024C425BB17C400CB1ADF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				8840246625BACE8400CB1ADF /* AppDelegate.swift */,
 				8840246825BACE8400CB1ADF /* SceneDelegate.swift */,
 				8840246A25BACE8400CB1ADF /* ViewController.swift */,
+				884024C425BB17C400CB1ADF /* SettingViewController.swift */,
 				8840246C25BACE8400CB1ADF /* Main.storyboard */,
 				8840246F25BACE8500CB1ADF /* Assets.xcassets */,
 				8840247125BACE8500CB1ADF /* LaunchScreen.storyboard */,
@@ -261,6 +264,7 @@
 				8840246B25BACE8400CB1ADF /* ViewController.swift in Sources */,
 				8840246725BACE8400CB1ADF /* AppDelegate.swift in Sources */,
 				8840246925BACE8400CB1ADF /* SceneDelegate.swift in Sources */,
+				884024C525BB17C400CB1ADF /* SettingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
