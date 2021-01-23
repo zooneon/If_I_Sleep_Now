@@ -1,16 +1,17 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  I2SN
 //
-//  Created by 손상준 on 2021/01/22.
+//  Created by 권준원 on 2021/01/23.
 //
 
 import UIKit
 
 class HomeViewController: UIViewController {
 
-    @IBOutlet var datePicker: UIDatePicker!
-    @IBOutlet var btnStart: UIButton!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var startButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         assignBackground()
@@ -20,8 +21,8 @@ class HomeViewController: UIViewController {
     
     func assignBackground(){
         let background = UIImage(named: "background.jpg")
-
         var imageView : UIImageView!
+        
         imageView = UIImageView(frame: view.bounds)
         imageView.contentMode =  UIView.ContentMode.scaleAspectFill
         imageView.clipsToBounds = true
@@ -41,5 +42,5 @@ class HomeViewController: UIViewController {
     func setDatePicker() {
         datePicker.setValue(UIColor.white, forKey: "textColor")
     }
-}
 
+}
