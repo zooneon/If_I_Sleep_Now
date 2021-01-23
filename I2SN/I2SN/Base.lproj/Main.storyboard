@@ -60,8 +60,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="btnStart" destination="JzJ-k2-1Gs" id="GQ1-5Z-tPg"/>
-                        <outlet property="datePicker" destination="ghZ-IZ-4SL" id="eqm-ve-Bh4"/>
+                        <outlet property="datePicker" destination="ghZ-IZ-4SL" id="jr8-Pa-QLO"/>
+                        <outlet property="startButton" destination="JzJ-k2-1Gs" id="5fM-JJ-mut"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
