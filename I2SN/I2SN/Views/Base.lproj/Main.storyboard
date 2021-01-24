@@ -74,9 +74,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="btnStart" destination="JzJ-k2-1Gs" id="fRW-GE-C7v"/>
                         <outlet property="datePicker" destination="ghZ-IZ-4SL" id="jr8-Pa-QLO"/>
                         <outlet property="lblRemainTime" destination="qRe-cO-4JV" id="LVs-i0-xsw"/>
-                        <outlet property="startButton" destination="JzJ-k2-1Gs" id="5fM-JJ-mut"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
