@@ -27,6 +27,9 @@
                                 <rect key="frame" x="47" y="138" width="320" height="216"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="changeDatePicker:" destination="BYZ-38-t0r" eventType="valueChanged" id="KW1-5J-214"/>
+                                </connections>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JzJ-k2-1Gs">
                                 <rect key="frame" x="172" y="354" width="70" height="42"/>
@@ -36,7 +39,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="시작"/>
+                                <connections>
+                                    <action selector="btnStartAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aq2-Dd-qwQ"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRe-cO-4JV">
+                                <rect key="frame" x="207" y="246" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -47,8 +59,10 @@
                             <constraint firstItem="ghZ-IZ-4SL" firstAttribute="centerX" secondItem="goP-IO-tQL" secondAttribute="centerX" id="Itb-Xx-54P"/>
                             <constraint firstItem="ghZ-IZ-4SL" firstAttribute="top" secondItem="goP-IO-tQL" secondAttribute="top" constant="140" id="L0S-Gr-gMh"/>
                             <constraint firstItem="JzJ-k2-1Gs" firstAttribute="top" secondItem="ghZ-IZ-4SL" secondAttribute="bottom" id="gyY-Ef-GzR"/>
+                            <constraint firstItem="qRe-cO-4JV" firstAttribute="centerX" secondItem="ghZ-IZ-4SL" secondAttribute="centerX" id="hjF-zH-KiX"/>
                             <constraint firstItem="JzJ-k2-1Gs" firstAttribute="centerX" secondItem="goP-IO-tQL" secondAttribute="centerX" id="jxX-qq-fv3"/>
                             <constraint firstItem="goP-IO-tQL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rT3-Mx-V5i"/>
+                            <constraint firstItem="qRe-cO-4JV" firstAttribute="centerY" secondItem="ghZ-IZ-4SL" secondAttribute="centerY" id="yvA-qn-TkE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="지금 자면  🛌" id="VcV-pj-mbm">
@@ -61,6 +75,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="datePicker" destination="ghZ-IZ-4SL" id="jr8-Pa-QLO"/>
+                        <outlet property="lblRemainTime" destination="qRe-cO-4JV" id="LVs-i0-xsw"/>
                         <outlet property="startButton" destination="JzJ-k2-1Gs" id="5fM-JJ-mut"/>
                     </connections>
                 </viewController>
