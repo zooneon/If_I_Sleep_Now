@@ -75,8 +75,56 @@
                     <view key="view" contentMode="scaleToFill" id="0jg-AX-IcK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림 간격 설정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nd-BF-9be">
+                                <rect key="frame" x="50" y="118" width="314" height="21.5"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PI9-db-yTj">
+                                <rect key="frame" x="50" y="154.5" width="314" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeCell" id="Cas-qm-Mu6" customClass="TimeCell" customModule="I2SN">
+                                        <rect key="frame" x="0.0" y="28" width="314" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cas-qm-Mu6" id="wlp-Lj-AGZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="314" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXg-JR-j9r">
+                                                    <rect key="frame" x="30" y="11.5" width="254" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="HXg-JR-j9r" secondAttribute="trailing" constant="30" id="Zmt-ta-FG3"/>
+                                            <constraint firstItem="HXg-JR-j9r" firstAttribute="leading" secondItem="Cas-qm-Mu6" secondAttribute="leading" constant="30" id="ahz-mU-5Y8"/>
+                                            <constraint firstItem="HXg-JR-j9r" firstAttribute="centerY" secondItem="Cas-qm-Mu6" secondAttribute="centerY" id="fBC-vI-dw6"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="timeLabel" destination="HXg-JR-j9r" id="gFL-Mb-YVv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="pEg-au-l2p"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PI9-db-yTj" firstAttribute="top" secondItem="9nd-BF-9be" secondAttribute="bottom" constant="15" id="1dT-0p-IfE"/>
+                            <constraint firstItem="9nd-BF-9be" firstAttribute="top" secondItem="pEg-au-l2p" secondAttribute="top" constant="30" id="2fX-wm-uEe"/>
+                            <constraint firstItem="PI9-db-yTj" firstAttribute="leading" secondItem="pEg-au-l2p" secondAttribute="leading" constant="50" id="5Gt-IH-Nuc"/>
+                            <constraint firstItem="pEg-au-l2p" firstAttribute="trailing" secondItem="9nd-BF-9be" secondAttribute="trailing" constant="50" id="JBH-oR-ANT"/>
+                            <constraint firstItem="9nd-BF-9be" firstAttribute="leading" secondItem="pEg-au-l2p" secondAttribute="leading" constant="50" id="dMo-lf-sym"/>
+                            <constraint firstItem="PI9-db-yTj" firstAttribute="height" secondItem="9nd-BF-9be" secondAttribute="height" multiplier="5.95349" id="dWq-BH-npM"/>
+                            <constraint firstItem="pEg-au-l2p" firstAttribute="trailing" secondItem="PI9-db-yTj" secondAttribute="trailing" constant="50" id="fWq-yQ-JnS"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="설정" id="Mds-Be-B3B">
                         <barButtonItem key="leftBarButtonItem" title="뒤로  🛌" id="FpU-A2-gAD">
@@ -86,10 +134,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="PI9-db-yTj" id="8ke-G5-IiT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KCt-wL-i3d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1854" y="94"/>
+            <point key="canvasLocation" x="1853.6231884057972" y="93.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Xqm-QT-V7y">
