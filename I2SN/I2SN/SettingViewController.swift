@@ -9,11 +9,16 @@ import UIKit
 
 class SettingViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         assignBackground()
-        
+        tableView.dataSource = self
+        tableView.layer.cornerRadius = 5
     }
+    
+    let timeInterval = [10, 30, 60]
     
     @IBAction func returnPressed(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
@@ -31,4 +36,23 @@ class SettingViewController: UIViewController {
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
     }
+}
+
+extension SettingViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return timeInterval.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TimeCell", for: indexPath) as? TimeCell else {
+            return UITableViewCell()
+        }
+        
+        cell.timeLabel.text = "\(timeInterval[indexPath.row])minutes"
+        return cell
+    }
+}
+
+class TimeCell: UITableViewCell {
+    @IBOutlet weak var timeLabel: UILabel!
 }
