@@ -142,10 +142,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="설정" id="Mds-Be-B3B">
-                        <barButtonItem key="leftBarButtonItem" title="뒤로  🛌" id="FpU-A2-gAD">
+                        <barButtonItem key="rightBarButtonItem" title="완료" id="VCi-dh-1yz">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="returnPressed:" destination="2sE-Al-X7Q" id="hlm-OA-HOE"/>
+                                <action selector="returnPressed:" destination="2sE-Al-X7Q" id="nnL-zC-5fO"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

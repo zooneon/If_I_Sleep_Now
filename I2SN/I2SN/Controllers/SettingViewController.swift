@@ -17,6 +17,7 @@ class SettingViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.layer.cornerRadius = 5
+        navigationItem.hidesBackButton = true
     }
     
     let timeInterval = [10, 30, 60]
