@@ -20,6 +20,7 @@ class SettingViewController: UIViewController {
     }
     
     let timeInterval = [10, 30, 60]
+    weak var delegate: TimeIntervalDelegate?
     
     @IBAction func returnPressed(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
@@ -55,6 +56,7 @@ extension SettingViewController: UITableViewDataSource {
 }
 
 extension SettingViewController: UITableViewDelegate {
+    // 셀에 있는 모든 체크마크를 지움
     func resetAccessoryType(){
         for section in 0..<self.tableView.numberOfSections{
             for row in 0..<self.tableView.numberOfRows(inSection: section){
@@ -67,7 +69,14 @@ extension SettingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         resetAccessoryType()
         guard let cell = tableView.cellForRow(at: indexPath) as? TimeCell else { return }
+        // 선택된 셀에 체크마크 표시
         cell.accessoryType = .checkmark
+        
+        guard let timeString = cell.timeLabel.text else { return }
+        let endIdx = timeString.index(timeString.startIndex, offsetBy: 1)
+        let timeInterval: Int = Int(timeString[...endIdx])!
+        
+        delegate?.setTimeInterval(timeInterval: timeInterval)
     }
 }
 

@@ -18,6 +18,13 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet var lblRemainTime: UILabel!
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "show" {
+            let vc: SettingViewController = segue.destination as! SettingViewController
+            vc.delegate = self
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         assignBackground()
@@ -54,7 +61,9 @@ class HomeViewController: UIViewController {
             btnStart.setTitle("시작", for: .normal)
         }
     }
-    
+}
+
+extension HomeViewController {
     @objc func updateTime() {
         let formatter = DateFormatter()
         let date = Date()
@@ -81,6 +90,14 @@ class HomeViewController: UIViewController {
         lblRemainTime.font = UIFont.systemFont(ofSize: CGFloat(50))
     }
     
+    func integerToString(_ number: Int) -> String {
+        if number < 10 {
+            return "0" + String(number)
+        } else {
+            return String(number)
+        }
+    }
+    
     func assignBackground(){
         let background = UIImage(named: "background.jpg")
         var imageView : UIImageView!
@@ -104,13 +121,10 @@ class HomeViewController: UIViewController {
     func setDatePicker() {
         datePicker.setValue(UIColor.white, forKey: "textColor")
     }
-    
-    func integerToString(_ number: Int) -> String {
-        if number < 10 {
-            return "0" + String(number)
-        } else {
-            return String(number)
-        }
+}
+
+extension HomeViewController: TimeIntervalDelegate {
+    func setTimeInterval(timeInterval: Int) {
+        print(timeInterval)
     }
-    
 }
