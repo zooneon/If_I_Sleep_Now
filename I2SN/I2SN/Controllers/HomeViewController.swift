@@ -13,6 +13,8 @@ class HomeViewController: UIViewController {
     var btnStartFlag = true
     let timeSelector: Selector = #selector(HomeViewController.updateTime)
     let interval = 1.0
+    // default값 30분
+    var timeInterval = 30
     
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var btnStart: UIButton!
@@ -125,6 +127,7 @@ extension HomeViewController {
 
 extension HomeViewController: TimeIntervalDelegate {
     func setTimeInterval(timeInterval: Int) {
+        self.timeInterval = timeInterval
         print(timeInterval)
     }
 }
