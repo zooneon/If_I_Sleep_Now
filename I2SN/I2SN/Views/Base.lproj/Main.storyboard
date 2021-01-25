@@ -43,7 +43,7 @@
                                     <action selector="btnStartAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aq2-Dd-qwQ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRe-cO-4JV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRe-cO-4JV">
                                 <rect key="frame" x="207" y="246" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -53,16 +53,16 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="qRe-cO-4JV" firstAttribute="centerY" secondItem="goP-IO-tQL" secondAttribute="centerY" id="1X6-Px-XiH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="goP-IO-tQL" secondAttribute="bottom" constant="250" id="6Xv-8X-TlH"/>
                             <constraint firstItem="goP-IO-tQL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-90" id="HMm-96-sjv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="goP-IO-tQL" secondAttribute="trailing" id="Hpc-Ar-bJv"/>
                             <constraint firstItem="ghZ-IZ-4SL" firstAttribute="centerX" secondItem="goP-IO-tQL" secondAttribute="centerX" id="Itb-Xx-54P"/>
                             <constraint firstItem="ghZ-IZ-4SL" firstAttribute="top" secondItem="goP-IO-tQL" secondAttribute="top" constant="140" id="L0S-Gr-gMh"/>
                             <constraint firstItem="JzJ-k2-1Gs" firstAttribute="top" secondItem="ghZ-IZ-4SL" secondAttribute="bottom" id="gyY-Ef-GzR"/>
-                            <constraint firstItem="qRe-cO-4JV" firstAttribute="centerX" secondItem="ghZ-IZ-4SL" secondAttribute="centerX" id="hjF-zH-KiX"/>
+                            <constraint firstItem="qRe-cO-4JV" firstAttribute="centerX" secondItem="goP-IO-tQL" secondAttribute="centerX" id="jxR-BZ-ask"/>
                             <constraint firstItem="JzJ-k2-1Gs" firstAttribute="centerX" secondItem="goP-IO-tQL" secondAttribute="centerX" id="jxX-qq-fv3"/>
                             <constraint firstItem="goP-IO-tQL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rT3-Mx-V5i"/>
-                            <constraint firstItem="qRe-cO-4JV" firstAttribute="centerY" secondItem="ghZ-IZ-4SL" secondAttribute="centerY" id="yvA-qn-TkE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="지금 자면  🛌" id="VcV-pj-mbm">
@@ -102,7 +102,7 @@
                                 <rect key="frame" x="50" y="154.5" width="314" height="128"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeCell" id="Cas-qm-Mu6" customClass="TimeCell" customModule="I2SN">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimeCell" id="Cas-qm-Mu6" customClass="TimeCell" customModule="I2SN">
                                         <rect key="frame" x="0.0" y="28" width="314" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cas-qm-Mu6" id="wlp-Lj-AGZ">
@@ -110,7 +110,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HXg-JR-j9r">
-                                                    <rect key="frame" x="30" y="11.5" width="254" height="20.5"/>
+                                                    <rect key="frame" x="20" y="11.5" width="264" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -119,7 +119,7 @@
                                         </tableViewCellContentView>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="HXg-JR-j9r" secondAttribute="trailing" constant="30" id="Zmt-ta-FG3"/>
-                                            <constraint firstItem="HXg-JR-j9r" firstAttribute="leading" secondItem="Cas-qm-Mu6" secondAttribute="leading" constant="30" id="ahz-mU-5Y8"/>
+                                            <constraint firstItem="HXg-JR-j9r" firstAttribute="leading" secondItem="Cas-qm-Mu6" secondAttribute="leading" constant="20" id="ahz-mU-5Y8"/>
                                             <constraint firstItem="HXg-JR-j9r" firstAttribute="centerY" secondItem="Cas-qm-Mu6" secondAttribute="centerY" id="fBC-vI-dw6"/>
                                         </constraints>
                                         <connections>

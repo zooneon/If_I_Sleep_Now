@@ -15,6 +15,7 @@ class SettingViewController: UIViewController {
         super.viewDidLoad()
         assignBackground()
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.layer.cornerRadius = 5
     }
     
@@ -48,8 +49,25 @@ extension SettingViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.timeLabel.text = "\(timeInterval[indexPath.row])minutes"
+        cell.timeLabel.text = "\(timeInterval[indexPath.row])분"
         return cell
+    }
+}
+
+extension SettingViewController: UITableViewDelegate {
+    func resetAccessoryType(){
+        for section in 0..<self.tableView.numberOfSections{
+            for row in 0..<self.tableView.numberOfRows(inSection: section){
+                let cell = self.tableView.cellForRow(at: IndexPath(row: row, section: section))
+                cell?.accessoryType = .none
+            }
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        resetAccessoryType()
+        guard let cell = tableView.cellForRow(at: indexPath) as? TimeCell else { return }
+        cell.accessoryType = .checkmark
     }
 }
 
