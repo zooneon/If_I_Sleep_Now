@@ -90,6 +90,44 @@ extension HomeViewController {
         lblRemainTime.text = timeString
         lblRemainTime.textColor = UIColor.white
         lblRemainTime.font = UIFont.systemFont(ofSize: CGFloat(50))
+        
+        
+        if timeInterval == 10 {
+            if(min == "00" && sec == "00") {
+                setTimeAlert(timeString: timeString)
+            }
+            if(min == "10" && sec == "00") {
+                setTimeAlert(timeString: timeString)
+            }
+            if(min == "20" && sec == "00") {
+                setTimeAlert(timeString: timeString)
+            }
+            if(min == "30" && sec == "00") {
+                setTimeAlert(timeString: timeString)
+            }
+            if(min == "40" && sec == "00") {
+                setTimeAlert(timeString: timeString)
+            }
+            if(min == "50" && sec == "00") {
+                setTimeAlert(timeString: timeString)
+            }
+        }
+        
+        if timeInterval == 30 {
+            if(min == "30" && sec == "00") {
+                setTimeAlert(timeString: timeString)
+            }
+            if(min == "00" && sec == "00") {
+                setTimeAlert(timeString: timeString)
+            }
+        }
+        
+        if timeInterval == 60 {
+            if(min == "00" && sec == "00") {
+                setTimeAlert(timeString: timeString)
+            }
+        }
+        
     }
     
     func integerToString(_ number: Int) -> String {
@@ -123,6 +161,16 @@ extension HomeViewController {
     func setDatePicker() {
         datePicker.setValue(UIColor.white, forKey: "textColor")
     }
+    
+    func setTimeAlert(timeString: String) {
+        let timeAlert = UIAlertController(title: "지금자면..🛌", message: timeString + "잘 수 있습니다.", preferredStyle: UIAlertController.Style.alert)
+        let onAction = UIAlertAction(title: "네 알겠습니다!", style: UIAlertAction.Style.default, handler: nil)
+        
+        timeAlert.addAction(onAction)
+        present(timeAlert, animated: true, completion: nil)
+    }
+    
+    
 }
 
 extension HomeViewController: TimeIntervalDelegate {
