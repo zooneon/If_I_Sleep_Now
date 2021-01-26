@@ -13,7 +13,6 @@ class HomeViewController: UIViewController {
     var timer: Timer?
     var btnStartFlag = true
     let timeSelector: Selector = #selector(HomeViewController.updateTime)
-    let interval = 1.0
     // default값 30분
     var timeInterval = 30
     
@@ -33,17 +32,16 @@ class HomeViewController: UIViewController {
         assignBackground()
         setNavigationBar()
         setDatePicker()
-        
-        lblRemainTime.isHidden = true
     }
     
     @IBAction func changeDatePicker(_ sender: UIDatePicker) {
         let datePickerView = sender
         let formatter = DateFormatter()
         
-        formatter.dateFormat = "HH:mm:ss"
+        formatter.dateFormat = "HH:mm"
         
         let settingTime = formatter.string(from: datePickerView.date)
+        print(settingTime)
         
         alarmTime = formatter.date(from: settingTime)
         
@@ -51,10 +49,11 @@ class HomeViewController: UIViewController {
     
     @IBAction func btnStartAction(_ sender: UIButton) {
         if btnStartFlag == true {
-            timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: timeSelector, userInfo: nil, repeats: true)
-            
             datePicker.isHidden = true
             lblRemainTime.isHidden = false
+            
+            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timeSelector, userInfo: nil, repeats: true)
+            
             btnStartFlag = false
             btnStart.setTitle("그만", for: .normal)
         }
