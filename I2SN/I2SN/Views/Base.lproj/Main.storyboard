@@ -123,7 +123,7 @@
                                             <constraint firstItem="HXg-JR-j9r" firstAttribute="centerY" secondItem="Cas-qm-Mu6" secondAttribute="centerY" id="fBC-vI-dw6"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="timeLabel" destination="HXg-JR-j9r" id="gFL-Mb-YVv"/>
+                                            <outlet property="timeLabel" destination="HXg-JR-j9r" id="HMO-Ag-rXz"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

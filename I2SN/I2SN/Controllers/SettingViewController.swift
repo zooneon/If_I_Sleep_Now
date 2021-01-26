@@ -20,7 +20,9 @@ class SettingViewController: UIViewController {
         navigationItem.hidesBackButton = true
     }
     
-    let timeInterval = [10, 30, 60]
+    let timeIntervalArray = [10, 30, 60]
+    // default값 30분
+    var timeInterval = 30
     weak var delegate: TimeIntervalDelegate?
     
     @IBAction func returnPressed(_ sender: Any) {
@@ -43,7 +45,7 @@ class SettingViewController: UIViewController {
 
 extension SettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timeInterval.count
+        return timeIntervalArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,7 +53,7 @@ extension SettingViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.timeLabel.text = "\(timeInterval[indexPath.row])분"
+        cell.timeLabel.text = "\(timeIntervalArray[indexPath.row])분"
         return cell
     }
 }
@@ -75,12 +77,14 @@ extension SettingViewController: UITableViewDelegate {
         
         guard let timeString = cell.timeLabel.text else { return }
         let endIdx = timeString.index(timeString.startIndex, offsetBy: 1)
-        let timeInterval: Int = Int(timeString[...endIdx])!
+        timeInterval = Int(timeString[...endIdx])!
         
         delegate?.setTimeInterval(timeInterval: timeInterval)
     }
-}
-
-class TimeCell: UITableViewCell {
-    @IBOutlet weak var timeLabel: UILabel!
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if timeIntervalArray.firstIndex(of: timeInterval) == indexPath.row {
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
+        }
+    }
 }
