@@ -41,7 +41,6 @@ class HomeViewController: UIViewController {
         formatter.dateFormat = "HH:mm"
         
         let settingTime = formatter.string(from: datePickerView.date)
-        print(settingTime)
         
         alarmTime = formatter.date(from: settingTime)
         
@@ -196,6 +195,5 @@ extension HomeViewController {
 extension HomeViewController: TimeIntervalDelegate {
     func setTimeInterval(timeInterval: Int) {
         self.timeInterval = timeInterval
-        print(timeInterval)
     }
 }
