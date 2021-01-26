@@ -57,6 +57,7 @@ class HomeViewController: UIViewController {
             btnStart.setTitle("그만", for: .normal)
         }
         else {
+            initializeTimer()
             datePicker.isHidden = false
             lblRemainTime.isHidden = true
             btnStartFlag = true
