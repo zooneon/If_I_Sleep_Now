@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     var alarmTime : Date?
+    var timer: Timer?
     var btnStartFlag = true
     let timeSelector: Selector = #selector(HomeViewController.updateTime)
     let interval = 1.0
@@ -45,11 +46,12 @@ class HomeViewController: UIViewController {
         let settingTime = formatter.string(from: datePickerView.date)
         
         alarmTime = formatter.date(from: settingTime)
+        
     }
     
     @IBAction func btnStartAction(_ sender: UIButton) {
         if btnStartFlag == true {
-            Timer.scheduledTimer(timeInterval: interval, target: self, selector: timeSelector, userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: timeSelector, userInfo: nil, repeats: true)
             
             datePicker.isHidden = true
             lblRemainTime.isHidden = false
@@ -87,6 +89,17 @@ extension HomeViewController {
         
         let timeString = "\(hour) : \(min) : \(sec)"
         
+        var timeString2 = ""
+        
+        if hour == "00" {
+            timeString2 = min + "분"
+        }
+        else {
+            timeString2 = hour + "시간 " + min + "분"
+        }
+        
+        notifyRemainTime(timeInterval: timeInterval, timeString2: timeString2, hour: hour, min: min, sec: sec)
+        
         lblRemainTime.text = timeString
         lblRemainTime.textColor = UIColor.white
         lblRemainTime.font = UIFont.systemFont(ofSize: CGFloat(50))
@@ -122,6 +135,62 @@ extension HomeViewController {
     
     func setDatePicker() {
         datePicker.setValue(UIColor.white, forKey: "textColor")
+    }
+    
+    func setTimeAlert(timeString: String) {
+        let timeAlert = UIAlertController(title: "지금자면..🛌", message: timeString + "잘 수 있습니다!", preferredStyle: UIAlertController.Style.alert)
+        let onAction = UIAlertAction(title: "네 알겠습니다!", style: UIAlertAction.Style.default, handler: nil)
+        
+        timeAlert.addAction(onAction)
+        present(timeAlert, animated: true, completion: nil)
+    }
+    
+    func notifyRemainTime(timeInterval: Int, timeString2: String, hour: String, min: String, sec: String) {
+        if(hour == "00" && min == "00" && sec == "00") {
+           initializeTimer()
+        }
+        else if timeInterval == 10 {
+            if(min == "00" && sec == "00") {
+                setTimeAlert(timeString: timeString2)
+            }
+            if(min == "10" && sec == "00") {
+                setTimeAlert(timeString: timeString2)
+            }
+            if(min == "20" && sec == "00") {
+                setTimeAlert(timeString: timeString2)
+            }
+            if(min == "30" && sec == "00") {
+                setTimeAlert(timeString: timeString2)
+            }
+            if(min == "40" && sec == "00") {
+                setTimeAlert(timeString: timeString2)
+            }
+            if(min == "50" && sec == "00") {
+                setTimeAlert(timeString: timeString2)
+            }
+        }
+        else if timeInterval == 30 {
+            if(min == "30" && sec == "00") {
+                setTimeAlert(timeString: timeString2)
+            }
+            if(min == "00" && sec == "00") {
+                setTimeAlert(timeString: timeString2)
+            }
+        }
+        else if timeInterval == 60 {
+            if(min == "00" && sec == "00") {
+                setTimeAlert(timeString: timeString2)
+            }
+        }
+    }
+    
+    func initializeTimer() {
+        timer?.invalidate()
+        timer = nil
+        datePicker.isHidden = false
+        lblRemainTime.isHidden = true
+        btnStartFlag = true
+        btnStart.setTitle("시작", for: .normal)
     }
 }
 

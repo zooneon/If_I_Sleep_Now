@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--지금 자면  🛌-->
+        <!--🛌 지금 자면  -->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="I2SN" customModuleProvider="target" sceneMemberID="viewController">
@@ -65,7 +65,7 @@
                             <constraint firstItem="goP-IO-tQL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rT3-Mx-V5i"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="지금 자면  🛌" id="VcV-pj-mbm">
+                    <navigationItem key="navigationItem" title="🛌 지금 자면  " id="VcV-pj-mbm">
                         <barButtonItem key="rightBarButtonItem" title="설정" id="7Cg-lB-Tu1">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -83,7 +83,7 @@
             </objects>
             <point key="canvasLocation" x="928.98550724637687" y="93.75"/>
         </scene>
-        <!--설정-->
+        <!--⚙️ 설정-->
         <scene sceneID="57A-ON-ChD">
             <objects>
                 <viewController id="2sE-Al-X7Q" customClass="SettingViewController" customModule="I2SN" customModuleProvider="target" sceneMemberID="viewController">
@@ -141,7 +141,7 @@
                             <constraint firstItem="pEg-au-l2p" firstAttribute="trailing" secondItem="PI9-db-yTj" secondAttribute="trailing" constant="50" id="fWq-yQ-JnS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="설정" id="Mds-Be-B3B">
+                    <navigationItem key="navigationItem" title="⚙️ 설정" id="Mds-Be-B3B">
                         <barButtonItem key="rightBarButtonItem" title="완료" id="VCi-dh-1yz">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
