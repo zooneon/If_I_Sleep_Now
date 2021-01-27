@@ -19,6 +19,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet var lblRemainTime: UILabel!
+    @IBOutlet weak var imgCircle: UIImageView!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "show" {
@@ -48,18 +49,20 @@ class HomeViewController: UIViewController {
     
     @IBAction func btnStartAction(_ sender: UIButton) {
         if btnStartFlag == true {
-            datePicker.isHidden = true
-            lblRemainTime.isHidden = false
-            
             timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timeSelector, userInfo: nil, repeats: true)
             
+            datePicker.isHidden = true
+            lblRemainTime.isHidden = false
+            imgCircle.isHidden = false
             btnStartFlag = false
             btnStart.setTitle("그만", for: .normal)
         }
         else {
             initializeTimer()
+            
             datePicker.isHidden = false
             lblRemainTime.isHidden = true
+            imgCircle.isHidden = true
             btnStartFlag = true
             btnStart.setTitle("시작", for: .normal)
         }
