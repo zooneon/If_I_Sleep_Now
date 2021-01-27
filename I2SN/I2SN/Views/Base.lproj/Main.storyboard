@@ -24,7 +24,7 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="small" weight="ultraLight"/>
                             </imageView>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="ghZ-IZ-4SL">
-                                <rect key="frame" x="47" y="138" width="320" height="216"/>
+                                <rect key="frame" x="47" y="118" width="320" height="216"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -32,10 +32,7 @@
                                 </connections>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JzJ-k2-1Gs">
-                                <rect key="frame" x="172" y="354" width="70" height="42"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="AB8-fC-dKT"/>
-                                </constraints>
+                                <rect key="frame" x="185" y="344" width="44" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="시작"/>
@@ -58,8 +55,8 @@
                             <constraint firstItem="goP-IO-tQL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-90" id="HMm-96-sjv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="goP-IO-tQL" secondAttribute="trailing" id="Hpc-Ar-bJv"/>
                             <constraint firstItem="ghZ-IZ-4SL" firstAttribute="centerX" secondItem="goP-IO-tQL" secondAttribute="centerX" id="Itb-Xx-54P"/>
-                            <constraint firstItem="ghZ-IZ-4SL" firstAttribute="top" secondItem="goP-IO-tQL" secondAttribute="top" constant="140" id="L0S-Gr-gMh"/>
-                            <constraint firstItem="JzJ-k2-1Gs" firstAttribute="top" secondItem="ghZ-IZ-4SL" secondAttribute="bottom" id="gyY-Ef-GzR"/>
+                            <constraint firstItem="ghZ-IZ-4SL" firstAttribute="top" secondItem="goP-IO-tQL" secondAttribute="top" constant="120" id="L0S-Gr-gMh"/>
+                            <constraint firstItem="JzJ-k2-1Gs" firstAttribute="top" secondItem="ghZ-IZ-4SL" secondAttribute="bottom" constant="10" id="gyY-Ef-GzR"/>
                             <constraint firstItem="qRe-cO-4JV" firstAttribute="centerX" secondItem="goP-IO-tQL" secondAttribute="centerX" id="jxR-BZ-ask"/>
                             <constraint firstItem="JzJ-k2-1Gs" firstAttribute="centerX" secondItem="goP-IO-tQL" secondAttribute="centerX" id="jxX-qq-fv3"/>
                             <constraint firstItem="goP-IO-tQL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rT3-Mx-V5i"/>
