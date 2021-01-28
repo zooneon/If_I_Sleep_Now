@@ -9,6 +9,11 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var btnStart: UIButton!
+    @IBOutlet var lblRemainTime: UILabel!
+    @IBOutlet weak var imgCircle: UIImageView!
+    
     var alarmTime : Date?
     var timer: Timer?
     var btnStartFlag = true
@@ -16,11 +21,6 @@ class HomeViewController: UIViewController {
     // default값 30분
     var timeInterval = 30
     let userDefaults = UserDefaults.standard
-    
-    @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet weak var btnStart: UIButton!
-    @IBOutlet var lblRemainTime: UILabel!
-    @IBOutlet weak var imgCircle: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,8 +51,53 @@ class HomeViewController: UIViewController {
             initializeTimer()
         }
     }
+    
+    func assignBackground(){
+        let background = UIImage(named: "background.jpg")
+        var imageView : UIImageView!
+        
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+        imgCircle.isHidden = true
+    }
+
+    func setNavigationBar() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+    }
+    
+    func setDatePicker() {
+        datePicker.setValue(UIColor.white, forKey: "textColor")
+    }
+    
+    func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timeSelector, userInfo: nil, repeats: true)
+        datePicker.isHidden = true
+        lblRemainTime.isHidden = false
+        imgCircle.isHidden = false
+        btnStartFlag = false
+        btnStart.setTitle("그만", for: .normal)
+    }
+    
+    func initializeTimer() {
+        timer?.invalidate()
+        timer = nil
+        datePicker.isHidden = false
+        lblRemainTime.isHidden = true
+        imgCircle.isHidden = true
+        btnStartFlag = true
+        btnStart.setTitle("시작", for: .normal)
+    }
 }
 
+// MARK: - feature: Notification
 extension HomeViewController {
     @objc func updateTime() {
         let formatter = DateFormatter()
@@ -142,51 +187,7 @@ extension HomeViewController {
         return "\(Int(hour)!)시간 \(min)분"
     }
     
-    func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timeSelector, userInfo: nil, repeats: true)
-        datePicker.isHidden = true
-        lblRemainTime.isHidden = false
-        imgCircle.isHidden = false
-        btnStartFlag = false
-        btnStart.setTitle("그만", for: .normal)
-    }
-    
-    func initializeTimer() {
-        timer?.invalidate()
-        timer = nil
-        datePicker.isHidden = false
-        lblRemainTime.isHidden = true
-        imgCircle.isHidden = true
-        btnStartFlag = true
-        btnStart.setTitle("시작", for: .normal)
-    }
-    
-    func assignBackground(){
-        let background = UIImage(named: "background.jpg")
-        var imageView : UIImageView!
-        
-        imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = background
-        imageView.center = view.center
-        view.addSubview(imageView)
-        self.view.sendSubviewToBack(imageView)
-        imgCircle.isHidden = true
-    }
-
-    func setNavigationBar() {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
-    }
-    
-    func setDatePicker() {
-        datePicker.setValue(UIColor.white, forKey: "textColor")
-    }
-    
-    // 삭제 예정
+    // TODO: 삭제하고 UserNotification 등록
     func setTimeAlert(remainTimeString: String) {
         let timeAlert = UIAlertController(title: "🛌 지금자면", message: "\(remainTimeString) 잘 수 있습니다!", preferredStyle: UIAlertController.Style.alert)
         let onAction = UIAlertAction(title: "네 알겠습니다!", style: UIAlertAction.Style.default, handler: nil)

@@ -143,7 +143,7 @@
                         <barButtonItem key="rightBarButtonItem" title="완료" id="VCi-dh-1yz">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="returnPressed:" destination="2sE-Al-X7Q" id="nnL-zC-5fO"/>
+                                <action selector="btnCompleteAction:" destination="2sE-Al-X7Q" id="fcM-EH-eSb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

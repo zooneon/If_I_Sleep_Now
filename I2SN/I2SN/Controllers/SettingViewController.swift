@@ -11,14 +11,18 @@ class SettingViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    let timeIntervalArray = [10, 30, 60]
+    // default값 30분
+    var timeInterval = 30
+    let userDefaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         assignBackground()
+        setNavigationBar()
+        setTableViewLayout()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.layer.cornerRadius = 5
-        tableView.rowHeight = 44
-        navigationItem.hidesBackButton = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,12 +31,7 @@ class SettingViewController: UIViewController {
         self.timeInterval = userDefaults.integer(forKey: DataKeys.timeInterval) != 0 ? userDefaults.integer(forKey: DataKeys.timeInterval) : 30
     }
     
-    let timeIntervalArray = [10, 30, 60]
-    // default값 30분
-    var timeInterval = 30
-    let userDefaults = UserDefaults.standard
-    
-    @IBAction func returnPressed(_ sender: Any) {
+    @IBAction func btnCompleteAction(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
     }
     
@@ -47,6 +46,15 @@ class SettingViewController: UIViewController {
         imageView.center = view.center
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
+    }
+    
+    func setNavigationBar() {
+        navigationItem.hidesBackButton = true
+    }
+    
+    func setTableViewLayout() {
+        tableView.layer.cornerRadius = 5
+        tableView.rowHeight = 44
     }
 }
 
