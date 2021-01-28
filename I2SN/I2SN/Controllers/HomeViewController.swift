@@ -15,24 +15,31 @@ class HomeViewController: UIViewController {
     let timeSelector: Selector = #selector(HomeViewController.updateTime)
     // default값 30분
     var timeInterval = 30
+    let userDefaults = UserDefaults.standard
     
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet var lblRemainTime: UILabel!
     @IBOutlet weak var imgCircle: UIImageView!
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "show" {
-            let vc: SettingViewController = segue.destination as! SettingViewController
-            vc.delegate = self
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "show" {
+//            let vc: SettingViewController = segue.destination as! SettingViewController
+//            vc.delegate = self
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         assignBackground()
         setNavigationBar()
         setDatePicker()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // default값 30분
+        self.timeInterval = userDefaults.integer(forKey: DataKeys.timeInterval) != 0 ? userDefaults.integer(forKey: DataKeys.timeInterval) : 30
     }
     
     @IBAction func changeDatePicker(_ sender: UIDatePicker) {
@@ -195,9 +202,9 @@ extension HomeViewController {
         present(timeAlert, animated: true, completion: nil)
     }
 }
-
-extension HomeViewController: TimeIntervalDelegate {
-    func setTimeInterval(timeInterval: Int) {
-        self.timeInterval = timeInterval
-    }
-}
+//
+//extension HomeViewController: TimeIntervalDelegate {
+//    func setTimeInterval(timeInterval: Int) {
+//        self.timeInterval = timeInterval
+//    }
+//}

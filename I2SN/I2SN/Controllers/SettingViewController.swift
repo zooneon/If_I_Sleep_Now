@@ -21,9 +21,16 @@ class SettingViewController: UIViewController {
         navigationItem.hidesBackButton = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // default값 30분
+        self.timeInterval = userDefaults.integer(forKey: DataKeys.timeInterval) != 0 ? userDefaults.integer(forKey: DataKeys.timeInterval) : 30
+    }
+    
     let timeIntervalArray = [10, 30, 60]
     // default값 30분
     var timeInterval = 30
+    let userDefaults = UserDefaults.standard
     weak var delegate: TimeIntervalDelegate?
     
     @IBAction func returnPressed(_ sender: Any) {
@@ -78,9 +85,9 @@ extension SettingViewController: UITableViewDelegate {
         
         guard let timeString = cell.timeLabel.text else { return }
         let endIdx = timeString.index(timeString.startIndex, offsetBy: 1)
-        timeInterval = Int(timeString[...endIdx])!
+        userDefaults.set(Int(timeString[...endIdx]), forKey: DataKeys.timeInterval)
         
-        delegate?.setTimeInterval(timeInterval: timeInterval)
+//        delegate?.setTimeInterval(timeInterval: timeInterval)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
