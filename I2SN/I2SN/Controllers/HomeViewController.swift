@@ -117,7 +117,7 @@ extension HomeViewController {
         let timeString = "\(hour) : \(min) : \(sec)"
         lblRemainTime.text = timeString
         lblRemainTime.textColor = UIColor.white
-        lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .semibold)
+        lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .regular)
     }
     
     func integerToString(_ number: Int) -> String {
@@ -132,6 +132,7 @@ extension HomeViewController {
         // 남은 시간이 없으면 타이머 종료
         if "\(hour) : \(min) : \(sec)" == "00 : 00 : 00" {
            initializeTimer()
+            return
         }
         // MARK: 10분마다 알림
         if timeInterval == 10 {
