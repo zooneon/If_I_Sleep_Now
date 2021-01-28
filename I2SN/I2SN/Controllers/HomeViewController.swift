@@ -12,7 +12,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet var lblRemainTime: UILabel!
-    @IBOutlet weak var imgCircle: UIImageView!
     
     var alarmTime : Date?
     var timer: Timer?
@@ -63,7 +62,6 @@ class HomeViewController: UIViewController {
         imageView.center = view.center
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
-        imgCircle.isHidden = true
     }
 
     func setNavigationBar() {
@@ -81,7 +79,6 @@ class HomeViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timeSelector, userInfo: nil, repeats: true)
         datePicker.isHidden = true
         lblRemainTime.isHidden = false
-        imgCircle.isHidden = false
         btnStartFlag = false
         btnStart.setTitle("그만", for: .normal)
     }
@@ -91,7 +88,6 @@ class HomeViewController: UIViewController {
         timer = nil
         datePicker.isHidden = false
         lblRemainTime.isHidden = true
-        imgCircle.isHidden = true
         btnStartFlag = true
         btnStart.setTitle("시작", for: .normal)
     }
