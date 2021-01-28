@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		793A21E425BBFF350065BCC3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793A21E325BBFF350065BCC3 /* HomeViewController.swift */; };
-		796085AF25BF01F100CBE361 /* TimeIntervalDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796085AE25BF01F100CBE361 /* TimeIntervalDelegate.swift */; };
 		796085BD25C04E3B00CBE361 /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796085BC25C04E3B00CBE361 /* TimeCell.swift */; };
 		796085C325C2713600CBE361 /* DataKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796085C225C2713600CBE361 /* DataKeys.swift */; };
 		8840246725BACE8400CB1ADF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8840246625BACE8400CB1ADF /* AppDelegate.swift */; };
@@ -40,7 +39,6 @@
 
 /* Begin PBXFileReference section */
 		793A21E325BBFF350065BCC3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		796085AE25BF01F100CBE361 /* TimeIntervalDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalDelegate.swift; sourceTree = "<group>"; };
 		796085BC25C04E3B00CBE361 /* TimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
 		796085C225C2713600CBE361 /* DataKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataKeys.swift; sourceTree = "<group>"; };
 		8840246325BACE8400CB1ADF /* I2SN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = I2SN.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,14 +101,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		796085AD25BF01AC00CBE361 /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				796085AE25BF01F100CBE361 /* TimeIntervalDelegate.swift */,
-			);
-			path = Delegates;
-			sourceTree = "<group>";
-		};
 		796085C125C270FE00CBE361 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,7 +136,6 @@
 				8840246825BACE8400CB1ADF /* SceneDelegate.swift */,
 				7960859F25BDEE4E00CBE361 /* Controllers */,
 				796085A025BDEE7900CBE361 /* Views */,
-				796085AD25BF01AC00CBE361 /* Delegates */,
 				796085C125C270FE00CBE361 /* Utilities */,
 				8840246F25BACE8500CB1ADF /* Assets.xcassets */,
 				8840247425BACE8500CB1ADF /* Info.plist */,
@@ -305,7 +294,6 @@
 				796085C325C2713600CBE361 /* DataKeys.swift in Sources */,
 				796085BD25C04E3B00CBE361 /* TimeCell.swift in Sources */,
 				793A21E425BBFF350065BCC3 /* HomeViewController.swift in Sources */,
-				796085AF25BF01F100CBE361 /* TimeIntervalDelegate.swift in Sources */,
 				8840246725BACE8400CB1ADF /* AppDelegate.swift in Sources */,
 				8840246925BACE8400CB1ADF /* SceneDelegate.swift in Sources */,
 				884024C525BB17C400CB1ADF /* SettingViewController.swift in Sources */,

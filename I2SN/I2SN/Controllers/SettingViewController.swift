@@ -31,7 +31,6 @@ class SettingViewController: UIViewController {
     // default값 30분
     var timeInterval = 30
     let userDefaults = UserDefaults.standard
-    weak var delegate: TimeIntervalDelegate?
     
     @IBAction func returnPressed(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
@@ -86,8 +85,6 @@ extension SettingViewController: UITableViewDelegate {
         guard let timeString = cell.timeLabel.text else { return }
         let endIdx = timeString.index(timeString.startIndex, offsetBy: 1)
         userDefaults.set(Int(timeString[...endIdx]), forKey: DataKeys.timeInterval)
-        
-//        delegate?.setTimeInterval(timeInterval: timeInterval)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

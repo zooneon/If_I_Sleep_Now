@@ -22,13 +22,6 @@ class HomeViewController: UIViewController {
     @IBOutlet var lblRemainTime: UILabel!
     @IBOutlet weak var imgCircle: UIImageView!
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "show" {
-//            let vc: SettingViewController = segue.destination as! SettingViewController
-//            vc.delegate = self
-//        }
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         assignBackground()
@@ -202,9 +195,3 @@ extension HomeViewController {
         present(timeAlert, animated: true, completion: nil)
     }
 }
-//
-//extension HomeViewController: TimeIntervalDelegate {
-//    func setTimeInterval(timeInterval: Int) {
-//        self.timeInterval = timeInterval
-//    }
-//}
