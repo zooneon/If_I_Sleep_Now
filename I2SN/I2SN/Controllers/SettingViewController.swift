@@ -23,17 +23,14 @@ class SettingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.timeInterval = ud.integer(forKey: "timeInterval")
         // default값 30분
-        if self.timeInterval == 0 {
-            self.timeInterval = 30
-        }
+        self.timeInterval = userDefaults.integer(forKey: DataKeys.timeInterval) != 0 ? userDefaults.integer(forKey: DataKeys.timeInterval) : 30
     }
     
     let timeIntervalArray = [10, 30, 60]
     // default값 30분
     var timeInterval = 30
-    let ud = UserDefaults.standard
+    let userDefaults = UserDefaults.standard
     weak var delegate: TimeIntervalDelegate?
     
     @IBAction func returnPressed(_ sender: Any) {
@@ -88,7 +85,7 @@ extension SettingViewController: UITableViewDelegate {
         
         guard let timeString = cell.timeLabel.text else { return }
         let endIdx = timeString.index(timeString.startIndex, offsetBy: 1)
-        ud.set(Int(timeString[...endIdx]), forKey: "timeInterval")
+        userDefaults.set(Int(timeString[...endIdx]), forKey: DataKeys.timeInterval)
         
 //        delegate?.setTimeInterval(timeInterval: timeInterval)
     }

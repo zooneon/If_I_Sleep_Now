@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     let timeSelector: Selector = #selector(HomeViewController.updateTime)
     // default값 30분
     var timeInterval = 30
-    let ud = UserDefaults.standard
+    let userDefaults = UserDefaults.standard
     
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var btnStart: UIButton!
@@ -38,11 +38,8 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.timeInterval = ud.integer(forKey: "timeInterval")
         // default값 30분
-        if self.timeInterval == 0 {
-            self.timeInterval = 30
-        }
+        self.timeInterval = userDefaults.integer(forKey: DataKeys.timeInterval) != 0 ? userDefaults.integer(forKey: DataKeys.timeInterval) : 30
     }
     
     @IBAction func changeDatePicker(_ sender: UIDatePicker) {
