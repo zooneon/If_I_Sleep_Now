@@ -1,0 +1,6 @@
+framework module Pods_I2SN {
+  umbrella header "Pods-I2SN-umbrella.h"
+
+  export *
+  module * { export * }
+}

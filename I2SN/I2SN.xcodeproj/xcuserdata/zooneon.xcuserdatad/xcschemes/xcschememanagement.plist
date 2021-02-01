@@ -7,7 +7,25 @@
 		<key>I2SN.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>13</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>8840246225BACE8400CB1ADF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8840247825BACE8500CB1ADF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8840248325BACE8500CB1ADF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

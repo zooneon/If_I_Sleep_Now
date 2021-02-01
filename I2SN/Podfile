@@ -1,0 +1,22 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '10.0'
+
+target 'I2SN' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for I2SN
+
+  target 'I2SNTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'I2SNUITests' do
+    # Pods for testing
+  end
+
+  # Add the Firebase pod for Google Analytics
+  pod 'Firebase/Analytics'
+
+end

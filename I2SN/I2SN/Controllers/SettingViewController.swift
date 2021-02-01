@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class SettingViewController: UIViewController {
 
@@ -92,7 +93,10 @@ extension SettingViewController: UITableViewDelegate {
         
         guard let timeString = cell.timeLabel.text else { return }
         let endIdx = timeString.index(timeString.startIndex, offsetBy: 1)
-        userDefaults.set(Int(timeString[...endIdx]), forKey: DataKeys.timeInterval)
+        timeInterval = Int(timeString[...endIdx])!
+        userDefaults.set(timeInterval, forKey: DataKeys.timeInterval)
+        // GA - custom event 추가
+        Analytics.logEvent("set_timeInterval", parameters: ["timeInterval": timeInterval as Int])
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
