@@ -6,24 +6,33 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 class SettingViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    let timeIntervalArray = [10, 30, 60]
+    // default값 30분
+    var timeInterval = 30
+    let userDefaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         assignBackground()
+        setNavigationBar()
+        setTableViewLayout()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.layer.cornerRadius = 5
-        navigationItem.hidesBackButton = true
     }
     
-    let timeInterval = [10, 30, 60]
-    weak var delegate: TimeIntervalDelegate?
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // default값 30분
+        self.timeInterval = userDefaults.integer(forKey: DataKeys.timeInterval) != 0 ? userDefaults.integer(forKey: DataKeys.timeInterval) : 30
+    }
     
-    @IBAction func returnPressed(_ sender: Any) {
+    @IBAction func btnCompleteAction(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
     }
     
@@ -39,11 +48,20 @@ class SettingViewController: UIViewController {
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
     }
+    
+    func setNavigationBar() {
+        navigationItem.hidesBackButton = true
+    }
+    
+    func setTableViewLayout() {
+        tableView.layer.cornerRadius = 5
+        tableView.rowHeight = 44
+    }
 }
 
 extension SettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timeInterval.count
+        return timeIntervalArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -51,7 +69,7 @@ extension SettingViewController: UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.timeLabel.text = "\(timeInterval[indexPath.row])분"
+        cell.timeLabel.text = "\(timeIntervalArray[indexPath.row])분"
         return cell
     }
 }
@@ -75,12 +93,15 @@ extension SettingViewController: UITableViewDelegate {
         
         guard let timeString = cell.timeLabel.text else { return }
         let endIdx = timeString.index(timeString.startIndex, offsetBy: 1)
-        let timeInterval: Int = Int(timeString[...endIdx])!
-        
-        delegate?.setTimeInterval(timeInterval: timeInterval)
+        timeInterval = Int(timeString[...endIdx])!
+        userDefaults.set(timeInterval, forKey: DataKeys.timeInterval)
+        // GA - custom event 추가
+        Analytics.logEvent("set_timeInterval", parameters: ["timeInterval": timeInterval as Int])
     }
-}
-
-class TimeCell: UITableViewCell {
-    @IBOutlet weak var timeLabel: UILabel!
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if timeIntervalArray.firstIndex(of: timeInterval) == indexPath.row {
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
+        }
+    }
 }

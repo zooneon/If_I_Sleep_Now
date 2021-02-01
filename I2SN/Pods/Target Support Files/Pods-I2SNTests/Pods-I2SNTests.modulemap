@@ -1,0 +1,6 @@
+framework module Pods_I2SNTests {
+  umbrella header "Pods-I2SNTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

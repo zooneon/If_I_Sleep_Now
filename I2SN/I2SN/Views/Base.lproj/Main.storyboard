@@ -3,13 +3,12 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--🛌 지금 자면  -->
+        <!--지금 자면 🛌-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="I2SN" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,14 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="goP-IO-tQL">
-                                <rect key="frame" x="0.0" y="-1" width="414" height="612"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <imageReference key="image" image="circle" catalog="system" symbolScale="default"/>
-                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" scale="small" weight="ultraLight"/>
-                            </imageView>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="ghZ-IZ-4SL">
-                                <rect key="frame" x="47" y="138" width="320" height="216"/>
+                                <rect key="frame" x="47" y="118" width="320" height="216"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -32,10 +25,7 @@
                                 </connections>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JzJ-k2-1Gs">
-                                <rect key="frame" x="172" y="354" width="70" height="42"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="AB8-fC-dKT"/>
-                                </constraints>
+                                <rect key="frame" x="185" y="334" width="44" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="시작"/>
@@ -43,8 +33,8 @@
                                     <action selector="btnStartAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aq2-Dd-qwQ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRe-cO-4JV">
-                                <rect key="frame" x="207" y="246" width="0.0" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRe-cO-4JV">
+                                <rect key="frame" x="207" y="226" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -53,19 +43,16 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="qRe-cO-4JV" firstAttribute="centerY" secondItem="goP-IO-tQL" secondAttribute="centerY" id="1X6-Px-XiH"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="goP-IO-tQL" secondAttribute="bottom" constant="250" id="6Xv-8X-TlH"/>
-                            <constraint firstItem="goP-IO-tQL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-90" id="HMm-96-sjv"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="goP-IO-tQL" secondAttribute="trailing" id="Hpc-Ar-bJv"/>
-                            <constraint firstItem="ghZ-IZ-4SL" firstAttribute="centerX" secondItem="goP-IO-tQL" secondAttribute="centerX" id="Itb-Xx-54P"/>
-                            <constraint firstItem="ghZ-IZ-4SL" firstAttribute="top" secondItem="goP-IO-tQL" secondAttribute="top" constant="140" id="L0S-Gr-gMh"/>
+                            <constraint firstItem="JzJ-k2-1Gs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="BVo-rp-9Ul"/>
+                            <constraint firstItem="ghZ-IZ-4SL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="Bsy-6Z-oiK"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="JzJ-k2-1Gs" secondAttribute="bottom" constant="486" id="Lde-IN-MfZ"/>
+                            <constraint firstItem="qRe-cO-4JV" firstAttribute="centerY" secondItem="ghZ-IZ-4SL" secondAttribute="centerY" id="ML5-YD-dIR"/>
+                            <constraint firstItem="qRe-cO-4JV" firstAttribute="centerX" secondItem="ghZ-IZ-4SL" secondAttribute="centerX" id="fEV-cb-9m8"/>
                             <constraint firstItem="JzJ-k2-1Gs" firstAttribute="top" secondItem="ghZ-IZ-4SL" secondAttribute="bottom" id="gyY-Ef-GzR"/>
-                            <constraint firstItem="qRe-cO-4JV" firstAttribute="centerX" secondItem="goP-IO-tQL" secondAttribute="centerX" id="jxR-BZ-ask"/>
-                            <constraint firstItem="JzJ-k2-1Gs" firstAttribute="centerX" secondItem="goP-IO-tQL" secondAttribute="centerX" id="jxX-qq-fv3"/>
-                            <constraint firstItem="goP-IO-tQL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rT3-Mx-V5i"/>
+                            <constraint firstItem="ghZ-IZ-4SL" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="iQY-GK-Kt5"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="🛌 지금 자면  " id="VcV-pj-mbm">
+                    <navigationItem key="navigationItem" title="지금 자면 🛌" id="VcV-pj-mbm">
                         <barButtonItem key="rightBarButtonItem" title="설정" id="7Cg-lB-Tu1">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -83,7 +70,7 @@
             </objects>
             <point key="canvasLocation" x="928.98550724637687" y="93.75"/>
         </scene>
-        <!--⚙️ 설정-->
+        <!--설정 ⚙️-->
         <scene sceneID="57A-ON-ChD">
             <objects>
                 <viewController id="2sE-Al-X7Q" customClass="SettingViewController" customModule="I2SN" customModuleProvider="target" sceneMemberID="viewController">
@@ -141,11 +128,11 @@
                             <constraint firstItem="pEg-au-l2p" firstAttribute="trailing" secondItem="PI9-db-yTj" secondAttribute="trailing" constant="50" id="fWq-yQ-JnS"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="⚙️ 설정" id="Mds-Be-B3B">
+                    <navigationItem key="navigationItem" title="설정 ⚙️" id="Mds-Be-B3B">
                         <barButtonItem key="rightBarButtonItem" title="완료" id="VCi-dh-1yz">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="returnPressed:" destination="2sE-Al-X7Q" id="nnL-zC-5fO"/>
+                                <action selector="btnCompleteAction:" destination="2sE-Al-X7Q" id="fcM-EH-eSb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -181,7 +168,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
