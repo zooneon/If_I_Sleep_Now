@@ -15,11 +15,13 @@ class HomeViewController: UIViewController {
     
     var alarmTime : Date?
     var timer: Timer?
-    var btnStartFlag = true
+    private var btnStartFlag = true
     let timeSelector: Selector = #selector(HomeViewController.updateTime)
     // default값 30분
-    var timeInterval = 30
-    let userDefaults = UserDefaults.standard
+    private var timeInterval = 30
+    // default sound "삐삐"
+    private var sound = "삐삐"
+    private let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,8 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         // default값 30분
         self.timeInterval = userDefaults.integer(forKey: DataKeys.timeInterval) != 0 ? userDefaults.integer(forKey: DataKeys.timeInterval) : 30
+        // default sound "삐삐"
+        self.sound = userDefaults.string(forKey: DataKeys.alarmSound) != "" ? userDefaults.string(forKey: DataKeys.alarmSound)! : "삐삐"
     }
     
     @IBAction func changeDatePicker(_ sender: UIDatePicker) {

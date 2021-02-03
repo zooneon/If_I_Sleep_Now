@@ -1,13 +1,13 @@
 //
-//  TimeCell.swift
+//  SelectCell.swift
 //  I2SN
 //
-//  Created by 권준원 on 2021/01/26.
+//  Created by 권준원 on 2021/02/04.
 //
 
 import UIKit
 
-class TimeCell: UITableViewCell {
+class SelectCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,5 +18,5 @@ class TimeCell: UITableViewCell {
         accessoryType = selected ? .checkmark : .none
         selectionStyle = .none
     }
-
+    
 }

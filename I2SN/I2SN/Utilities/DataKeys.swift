@@ -9,4 +9,5 @@ import Foundation
 
 struct DataKeys {
     static let timeInterval = "TimeInterval"
+    static let alarmSound = "AlarmSound"
 }

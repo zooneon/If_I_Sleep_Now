@@ -13,6 +13,9 @@
 		796085BD25C04E3B00CBE361 /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796085BC25C04E3B00CBE361 /* TimeCell.swift */; };
 		796085C325C2713600CBE361 /* DataKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796085C225C2713600CBE361 /* DataKeys.swift */; };
 		7964CAB925C6EC1F00EFC779 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7964CAB825C6EC1F00EFC779 /* GoogleService-Info.plist */; };
+		7964CB2A25CB09D600EFC779 /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7964CB2925CB09D600EFC779 /* SoundCell.swift */; };
+		7964CB2F25CB1A7D00EFC779 /* SoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7964CB2E25CB1A7D00EFC779 /* SoundViewController.swift */; };
+		7964CB3425CB2A4C00EFC779 /* SelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7964CB3325CB2A4C00EFC779 /* SelectCell.swift */; };
 		7EEF986FCC1691BA0F2FC3F5 /* Pods_I2SNTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F154CCD4A4DB7AC3F5699F9B /* Pods_I2SNTests.framework */; };
 		8840246725BACE8400CB1ADF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8840246625BACE8400CB1ADF /* AppDelegate.swift */; };
 		8840246925BACE8400CB1ADF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8840246825BACE8400CB1ADF /* SceneDelegate.swift */; };
@@ -51,6 +54,9 @@
 		796085BC25C04E3B00CBE361 /* TimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
 		796085C225C2713600CBE361 /* DataKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataKeys.swift; sourceTree = "<group>"; };
 		7964CAB825C6EC1F00EFC779 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7964CB2925CB09D600EFC779 /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
+		7964CB2E25CB1A7D00EFC779 /* SoundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundViewController.swift; sourceTree = "<group>"; };
+		7964CB3325CB2A4C00EFC779 /* SelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCell.swift; sourceTree = "<group>"; };
 		8840246325BACE8400CB1ADF /* I2SN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = I2SN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8840246625BACE8400CB1ADF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8840246825BACE8400CB1ADF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				793A21E325BBFF350065BCC3 /* HomeViewController.swift */,
+				7964CB2E25CB1A7D00EFC779 /* SoundViewController.swift */,
 				884024C425BB17C400CB1ADF /* SettingViewController.swift */,
 			);
 			path = Controllers;
@@ -137,6 +144,8 @@
 				8840247125BACE8500CB1ADF /* LaunchScreen.storyboard */,
 				8840246C25BACE8400CB1ADF /* Main.storyboard */,
 				796085BC25C04E3B00CBE361 /* TimeCell.swift */,
+				7964CB2925CB09D600EFC779 /* SoundCell.swift */,
+				7964CB3325CB2A4C00EFC779 /* SelectCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -444,8 +453,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				796085C325C2713600CBE361 /* DataKeys.swift in Sources */,
+				7964CB2A25CB09D600EFC779 /* SoundCell.swift in Sources */,
+				7964CB3425CB2A4C00EFC779 /* SelectCell.swift in Sources */,
 				796085BD25C04E3B00CBE361 /* TimeCell.swift in Sources */,
 				793A21E425BBFF350065BCC3 /* HomeViewController.swift in Sources */,
+				7964CB2F25CB1A7D00EFC779 /* SoundViewController.swift in Sources */,
 				8840246725BACE8400CB1ADF /* AppDelegate.swift in Sources */,
 				8840246925BACE8400CB1ADF /* SceneDelegate.swift in Sources */,
 				884024C525BB17C400CB1ADF /* SettingViewController.swift in Sources */,
