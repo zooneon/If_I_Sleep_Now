@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import AVFoundation
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var btnStart: UIButton!
@@ -23,6 +24,11 @@ class HomeViewController: UIViewController {
     private var sound = "삐삐"
     private let userDefaults = UserDefaults.standard
     
+    var audioPlayer : AVAudioPlayer!
+    var audioFile : URL!
+    var audioPlayerFlag = false
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         assignBackground()
@@ -35,7 +41,7 @@ class HomeViewController: UIViewController {
         // default값 30분
         self.timeInterval = userDefaults.integer(forKey: DataKeys.timeInterval) != 0 ? userDefaults.integer(forKey: DataKeys.timeInterval) : 30
         // default sound "삐삐"
-        self.sound = userDefaults.string(forKey: DataKeys.alarmSound) != "" ? userDefaults.string(forKey: DataKeys.alarmSound)! : "삐삐"
+        self.sound = userDefaults.string(forKey: DataKeys.alarmSound) ?? "삐삐"
     }
     
     @IBAction func changeDatePicker(_ sender: UIDatePicker) {
@@ -52,6 +58,11 @@ class HomeViewController: UIViewController {
         }
         else {
             initializeTimer()
+            if audioPlayerFlag == true {
+                audioPlayer.stop()
+                audioPlayerFlag = false
+            }
+            changeStateButton()
         }
     }
     
@@ -90,10 +101,24 @@ class HomeViewController: UIViewController {
     func initializeTimer() {
         timer?.invalidate()
         timer = nil
+    }
+    
+    func changeStateButton() {
         datePicker.isHidden = false
         lblRemainTime.isHidden = true
         btnStartFlag = true
         btnStart.setTitle("시작", for: .normal)
+    }
+    
+    func initSoundPlayer() {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: audioFile)
+            audioPlayer.volume = 10.0
+            audioPlayer.numberOfLoops = -1
+        } catch let error as NSError {
+            print("initError : \(error)")
+        }
+        
     }
 }
 
@@ -135,7 +160,11 @@ extension HomeViewController {
     func notifyRemainTime(_ hour: String, _ min: String, _ sec: String) {
         // 남은 시간이 없으면 타이머 종료
         if "\(hour) : \(min) : \(sec)" == "00 : 00 : 00" {
-           initializeTimer()
+            audioPlayerFlag = true
+            audioFile = Bundle.main.url(forResource: sound, withExtension: "mp3")
+            initSoundPlayer()
+            audioPlayer.play()
+            initializeTimer()
             return
         }
         // MARK: 10분마다 알림

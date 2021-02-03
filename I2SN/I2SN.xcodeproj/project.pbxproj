@@ -25,6 +25,17 @@
 		8840247E25BACE8500CB1ADF /* I2SNTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8840247D25BACE8500CB1ADF /* I2SNTests.swift */; };
 		8840248925BACE8500CB1ADF /* I2SNUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8840248825BACE8500CB1ADF /* I2SNUITests.swift */; };
 		884024C525BB17C400CB1ADF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 884024C425BB17C400CB1ADF /* SettingViewController.swift */; };
+		88405F8A25CB3710007374D2 /* 비상벨.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88405F7F25CB370F007374D2 /* 비상벨.mp3 */; };
+		88405F8B25CB3710007374D2 /* 방사능 위험.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88405F8025CB370F007374D2 /* 방사능 위험.mp3 */; };
+		88405F8C25CB3710007374D2 /* 삐빅.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88405F8125CB370F007374D2 /* 삐빅.mp3 */; };
+		88405F8D25CB3710007374D2 /* 삐삐.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88405F8225CB370F007374D2 /* 삐삐.mp3 */; };
+		88405F8E25CB3710007374D2 /* 자명종 소리.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88405F8325CB370F007374D2 /* 자명종 소리.mp3 */; };
+		88405F8F25CB3710007374D2 /* 학교 벨소리.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88405F8425CB370F007374D2 /* 학교 벨소리.mp3 */; };
+		88405F9025CB3710007374D2 /* 삐삐삐삐.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88405F8525CB370F007374D2 /* 삐삐삐삐.mp3 */; };
+		88405F9125CB3710007374D2 /* 꼬꼬덱.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88405F8625CB370F007374D2 /* 꼬꼬덱.mp3 */; };
+		88405F9225CB3710007374D2 /* 빠른 삐삐삐삐.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88405F8725CB3710007374D2 /* 빠른 삐삐삐삐.mp3 */; };
+		88405F9325CB3710007374D2 /* 삐비동.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88405F8825CB3710007374D2 /* 삐비동.mp3 */; };
+		88405F9425CB3710007374D2 /* 긴 전화벨 소리.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88405F8925CB3710007374D2 /* 긴 전화벨 소리.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +82,17 @@
 		8840248825BACE8500CB1ADF /* I2SNUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = I2SNUITests.swift; sourceTree = "<group>"; };
 		8840248A25BACE8500CB1ADF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		884024C425BB17C400CB1ADF /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		88405F7F25CB370F007374D2 /* 비상벨.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "비상벨.mp3"; sourceTree = "<group>"; };
+		88405F8025CB370F007374D2 /* 방사능 위험.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "방사능 위험.mp3"; sourceTree = "<group>"; };
+		88405F8125CB370F007374D2 /* 삐빅.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "삐빅.mp3"; sourceTree = "<group>"; };
+		88405F8225CB370F007374D2 /* 삐삐.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "삐삐.mp3"; sourceTree = "<group>"; };
+		88405F8325CB370F007374D2 /* 자명종 소리.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "자명종 소리.mp3"; sourceTree = "<group>"; };
+		88405F8425CB370F007374D2 /* 학교 벨소리.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "학교 벨소리.mp3"; sourceTree = "<group>"; };
+		88405F8525CB370F007374D2 /* 삐삐삐삐.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "삐삐삐삐.mp3"; sourceTree = "<group>"; };
+		88405F8625CB370F007374D2 /* 꼬꼬덱.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "꼬꼬덱.mp3"; sourceTree = "<group>"; };
+		88405F8725CB3710007374D2 /* 빠른 삐삐삐삐.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "빠른 삐삐삐삐.mp3"; sourceTree = "<group>"; };
+		88405F8825CB3710007374D2 /* 삐비동.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "삐비동.mp3"; sourceTree = "<group>"; };
+		88405F8925CB3710007374D2 /* 긴 전화벨 소리.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "긴 전화벨 소리.mp3"; sourceTree = "<group>"; };
 		98EAF5FE2C815D667BF05C5F /* Pods-I2SNTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-I2SNTests.release.xcconfig"; path = "Target Support Files/Pods-I2SNTests/Pods-I2SNTests.release.xcconfig"; sourceTree = "<group>"; };
 		AB995FCA2D47B7C604B27A36 /* Pods-I2SNTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-I2SNTests.debug.xcconfig"; path = "Target Support Files/Pods-I2SNTests/Pods-I2SNTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B4EF6953054886FDDBEC9730 /* Pods_I2SN_I2SNUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_I2SN_I2SNUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +205,7 @@
 		8840246525BACE8400CB1ADF /* I2SN */ = {
 			isa = PBXGroup;
 			children = (
+				88405F7E25CB36F9007374D2 /* Sound */,
 				8840246625BACE8400CB1ADF /* AppDelegate.swift */,
 				8840246825BACE8400CB1ADF /* SceneDelegate.swift */,
 				7960859F25BDEE4E00CBE361 /* Controllers */,
@@ -211,6 +234,24 @@
 				8840248A25BACE8500CB1ADF /* Info.plist */,
 			);
 			path = I2SNUITests;
+			sourceTree = "<group>";
+		};
+		88405F7E25CB36F9007374D2 /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				88405F8925CB3710007374D2 /* 긴 전화벨 소리.mp3 */,
+				88405F8625CB370F007374D2 /* 꼬꼬덱.mp3 */,
+				88405F8025CB370F007374D2 /* 방사능 위험.mp3 */,
+				88405F7F25CB370F007374D2 /* 비상벨.mp3 */,
+				88405F8725CB3710007374D2 /* 빠른 삐삐삐삐.mp3 */,
+				88405F8825CB3710007374D2 /* 삐비동.mp3 */,
+				88405F8125CB370F007374D2 /* 삐빅.mp3 */,
+				88405F8225CB370F007374D2 /* 삐삐.mp3 */,
+				88405F8525CB370F007374D2 /* 삐삐삐삐.mp3 */,
+				88405F8325CB370F007374D2 /* 자명종 소리.mp3 */,
+				88405F8425CB370F007374D2 /* 학교 벨소리.mp3 */,
+			);
+			path = Sound;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,10 +362,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88405F8D25CB3710007374D2 /* 삐삐.mp3 in Resources */,
+				88405F8F25CB3710007374D2 /* 학교 벨소리.mp3 in Resources */,
+				88405F9325CB3710007374D2 /* 삐비동.mp3 in Resources */,
 				8840247325BACE8500CB1ADF /* LaunchScreen.storyboard in Resources */,
+				88405F8B25CB3710007374D2 /* 방사능 위험.mp3 in Resources */,
+				88405F8A25CB3710007374D2 /* 비상벨.mp3 in Resources */,
 				7964CAB925C6EC1F00EFC779 /* GoogleService-Info.plist in Resources */,
+				88405F9125CB3710007374D2 /* 꼬꼬덱.mp3 in Resources */,
+				88405F9225CB3710007374D2 /* 빠른 삐삐삐삐.mp3 in Resources */,
+				88405F8E25CB3710007374D2 /* 자명종 소리.mp3 in Resources */,
 				8840247025BACE8500CB1ADF /* Assets.xcassets in Resources */,
 				8840246E25BACE8400CB1ADF /* Main.storyboard in Resources */,
+				88405F8C25CB3710007374D2 /* 삐빅.mp3 in Resources */,
+				88405F9025CB3710007374D2 /* 삐삐삐삐.mp3 in Resources */,
+				88405F9425CB3710007374D2 /* 긴 전화벨 소리.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -646,7 +698,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hand.I2SN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -665,7 +717,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hand.I2SN;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

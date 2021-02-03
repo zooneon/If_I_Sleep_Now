@@ -12,7 +12,7 @@ class SoundViewController: UIViewController {
     
     @IBOutlet weak var selectTableView: UITableView!
     
-    private let soundArray = ["삐삐", "삐삐삐삐", "빠른 삐삐삐삐", "삐빅", "삐비동", "꼬꼬덱", "자명종 소리", "학교 벨소리", "긴 전화벨 소리", "비상밸 소리", "방사능 위험"]
+    private let soundArray = ["삐삐", "삐삐삐삐", "빠른 삐삐삐삐", "삐빅", "삐비동", "꼬꼬덱", "자명종 소리", "학교 벨소리", "긴 전화벨 소리", "비상벨", "방사능 위험"]
     // default sound "삐삐"
     private var sound = "삐삐"
     private let userDefaults = UserDefaults.standard
@@ -28,7 +28,7 @@ class SoundViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // default sound "삐삐"
-        self.sound = userDefaults.string(forKey: DataKeys.alarmSound) != "" ? userDefaults.string(forKey: DataKeys.alarmSound)! : "삐삐"
+        self.sound = userDefaults.string(forKey: DataKeys.alarmSound) ?? "삐삐"
     }
     
     func assignBackground(){
