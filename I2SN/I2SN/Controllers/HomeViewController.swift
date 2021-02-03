@@ -113,7 +113,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     func initSoundPlayer() {
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: audioFile)
-            audioPlayer.volume = 10.0
+            audioPlayer.volume = 63.5
             audioPlayer.numberOfLoops = -1
         } catch let error as NSError {
             print("initError : \(error)")
