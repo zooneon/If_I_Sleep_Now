@@ -10,20 +10,23 @@ import FirebaseAnalytics
 
 class SettingViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var timeTableView: UITableView!
+    @IBOutlet weak var soundTableView: UITableView!
     
-    let timeIntervalArray = [10, 30, 60]
+    private let timeIntervalArray = [10, 30, 60]
     // default값 30분
-    var timeInterval = 30
-    let userDefaults = UserDefaults.standard
+    private var timeInterval = 30
+    private let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         assignBackground()
         setNavigationBar()
         setTableViewLayout()
-        tableView.dataSource = self
-        tableView.delegate = self
+        timeTableView.dataSource = self
+        timeTableView.delegate = self
+        soundTableView.dataSource = self
+        soundTableView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,54 +57,74 @@ class SettingViewController: UIViewController {
     }
     
     func setTableViewLayout() {
-        tableView.layer.cornerRadius = 5
-        tableView.rowHeight = 44
+        timeTableView.layer.cornerRadius = 5
+        timeTableView.rowHeight = 44
+        soundTableView.layer.cornerRadius = 5
+        soundTableView.rowHeight = 44
     }
 }
 
+// MARK: - UITableViewDataSource
 extension SettingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return timeIntervalArray.count
+        if tableView == timeTableView {
+            return timeIntervalArray.count
+        }
+        if tableView == soundTableView {
+            return 1
+        }
+        
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TimeCell", for: indexPath) as? TimeCell else {
-            return UITableViewCell()
+        if tableView == timeTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TimeCell", for: indexPath)
+            cell.textLabel?.text = "\(timeIntervalArray[indexPath.row])분"
+            return cell
+        }
+        if tableView == soundTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SoundCell", for: indexPath)
+            cell.textLabel?.text = "알람음 선택"
+            return cell
         }
         
-        cell.timeLabel.text = "\(timeIntervalArray[indexPath.row])분"
-        return cell
+        return UITableViewCell()
     }
 }
 
+// MARK: - UITableViewDelegate
 extension SettingViewController: UITableViewDelegate {
     // 셀에 있는 모든 체크마크를 지움
     func resetAccessoryType(){
-        for section in 0..<self.tableView.numberOfSections{
-            for row in 0..<self.tableView.numberOfRows(inSection: section){
-                let cell = self.tableView.cellForRow(at: IndexPath(row: row, section: section))
-                cell?.accessoryType = .none
-            }
+        for row in 0..<self.timeTableView.numberOfRows(inSection: 0){
+            let cell = self.timeTableView.cellForRow(at: IndexPath(row: row, section: 0))
+            cell?.accessoryType = .none
         }
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        resetAccessoryType()
-        guard let cell = tableView.cellForRow(at: indexPath) as? TimeCell else { return }
-        // 선택된 셀에 체크마크 표시
-        cell.accessoryType = .checkmark
-        
-        guard let timeString = cell.timeLabel.text else { return }
-        let endIdx = timeString.index(timeString.startIndex, offsetBy: 1)
-        timeInterval = Int(timeString[...endIdx])!
-        userDefaults.set(timeInterval, forKey: DataKeys.timeInterval)
-        // GA - custom event 추가
-        Analytics.logEvent("set_timeInterval", parameters: ["timeInterval": timeInterval as Int])
+        if tableView == timeTableView {
+            resetAccessoryType()
+            guard let cell = timeTableView.cellForRow(at: indexPath) as? TimeCell else { return }
+            // 선택된 셀에 체크마크 표시
+            cell.accessoryType = .checkmark
+            timeInterval = timeIntervalArray[indexPath.row]
+            userDefaults.set(timeInterval, forKey: DataKeys.timeInterval)
+            // GA - custom event 추가
+            Analytics.logEvent("set_timeInterval", parameters: ["timeInterval": timeInterval as Int])
+        }
+        if tableView == soundTableView {
+            guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "SoundViewController") as? SoundViewController else { return }
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if timeIntervalArray.firstIndex(of: timeInterval) == indexPath.row {
-            tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
+        if tableView == timeTableView {
+            if timeIntervalArray.firstIndex(of: timeInterval) == indexPath.row {
+                timeTableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
+            }
         }
     }
 }
