@@ -13,7 +13,7 @@ class SoundViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBOutlet weak var selectTableView: UITableView!
     
-    private let soundArray = ["삐삐", "삐삐삐삐", "빠른 삐삐삐삐", "삐빅", "삐비동", "꼬꼬덱", "자명종 소리", "학교 벨소리", "긴 전화벨 소리", "비상벨", "방사능 위험"]
+    private let soundArray = ["삐삐", "삐삐삐삐", "빠른 삐삐삐삐", "삐빅", "삐비동", "꼬꼬댁", "자명종 소리", "학교 벨소리", "긴 전화벨 소리", "비상벨", "방사능 위험"]
     // default sound "삐삐"
     private var sound = "삐삐"
     private let userDefaults = UserDefaults.standard
@@ -23,6 +23,7 @@ class SoundViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         assignBackground()
+        setNavigationBar()
         setTableViewLayout()
         selectTableView.dataSource = self
         selectTableView.delegate = self
@@ -32,6 +33,10 @@ class SoundViewController: UIViewController, AVAudioPlayerDelegate {
         super.viewWillAppear(animated)
         // default sound "삐삐"
         self.sound = userDefaults.string(forKey: DataKeys.alarmSound) ?? "삐삐"
+    }
+    
+    @IBAction func btnCompleteAction(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
     }
     
     func assignBackground(){
@@ -45,6 +50,10 @@ class SoundViewController: UIViewController, AVAudioPlayerDelegate {
         imageView.center = view.center
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
+    }
+    
+    func setNavigationBar() {
+        navigationItem.hidesBackButton = true
     }
     
     func setTableViewLayout() {
@@ -71,6 +80,7 @@ extension SoundViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = selectTableView.dequeueReusableCell(withIdentifier: "SelectCell", for: indexPath)
         cell.textLabel?.text = soundArray[indexPath.row]
+        cell.textLabel?.font = .systemFont(ofSize: 15, weight: .medium)
         return cell
     }
 }

@@ -81,11 +81,13 @@ extension SettingViewController: UITableViewDataSource {
         if tableView == timeTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TimeCell", for: indexPath)
             cell.textLabel?.text = "\(timeIntervalArray[indexPath.row])분"
+            cell.textLabel?.font = .systemFont(ofSize: 15, weight: .medium)
             return cell
         }
         if tableView == soundTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SoundCell", for: indexPath)
             cell.textLabel?.text = "알람음 선택"
+            cell.textLabel?.font = .systemFont(ofSize: 15, weight: .medium)
             return cell
         }
         

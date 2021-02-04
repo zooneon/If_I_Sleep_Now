@@ -146,7 +146,7 @@ extension HomeViewController {
         let timeString = "\(hour) : \(min) : \(sec)"
         lblRemainTime.text = timeString
         lblRemainTime.textColor = UIColor.white
-        lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .regular)
+        lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .thin)
     }
     
     func integerToString(_ number: Int) -> String {
