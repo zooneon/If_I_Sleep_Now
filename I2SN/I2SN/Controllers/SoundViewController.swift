@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import AVFoundation
 import FirebaseAnalytics
 
-class SoundViewController: UIViewController {
+class SoundViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBOutlet weak var selectTableView: UITableView!
     
@@ -16,6 +17,8 @@ class SoundViewController: UIViewController {
     // default sound "삐삐"
     private var sound = "삐삐"
     private let userDefaults = UserDefaults.standard
+    private var audioPlayer: AVAudioPlayer!
+    private var audioFile: URL!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +50,15 @@ class SoundViewController: UIViewController {
     func setTableViewLayout() {
         selectTableView.layer.cornerRadius = 5
         selectTableView.rowHeight = 44
+    }
+    
+    func initSoundPlayer() {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: audioFile)
+            audioPlayer.volume = 10.0
+        } catch let error as NSError {
+            print("Error-initPlay : \(error)")
+        }
     }
 }
 
@@ -83,6 +95,10 @@ extension SoundViewController: UITableViewDelegate {
         userDefaults.set(sound, forKey: DataKeys.alarmSound)
         // GA - custom event 추가
         Analytics.logEvent("set_alarm_sound", parameters: ["alarmSound": sound as String])
+        
+        audioFile = Bundle.main.url(forResource: sound, withExtension: "mp3")
+        initSoundPlayer()
+        audioPlayer.play()
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
