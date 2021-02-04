@@ -28,6 +28,8 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     var audioFile : URL!
     var audioPlayerFlag = false
     
+    var diffFlag = false
+    var fixedTime = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +101,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     func initializeTimer() {
+        diffFlag = false
         timer?.invalidate()
         timer = nil
     }
@@ -131,17 +134,39 @@ extension HomeViewController {
         let nowTime = formatter.string(from: date as Date)
         let currentTime = formatter.date(from: nowTime)!
         var diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
+        
         // 현재시간이 알람시간을 지났을 경우
         if diff < 0 {
             diff = diff + 86400
         }
+        
+        if diffFlag == false {
+            diffFlag = true
+            
+            if timeInterval == 10 {
+                fixedTime = diff - 3600
+            }
+            else if timeInterval == 30 {
+                fixedTime = diff - 10800
+            }
+            else if timeInterval == 60 {
+                fixedTime = diff - 14400
+            }
+        }
+        
+        var diffTemp = diff
+        
         // MARK: 남은 시간 계산
-        let sec = integerToString(diff%60)
-        diff = diff/60
-        let min = integerToString(diff%60)
-        diff = diff/60
-        let hour = integerToString(diff)
-        notifyRemainTime(hour, min, sec)
+        let sec = integerToString(diffTemp%60)
+        diffTemp = diffTemp/60
+        let min = integerToString(diffTemp%60)
+        diffTemp = diffTemp/60
+        let hour = integerToString(diffTemp)
+        
+    
+        if diff > fixedTime {
+            notifyRemainTime(hour, min, sec)
+        }
         
         let timeString = "\(hour) : \(min) : \(sec)"
         lblRemainTime.text = timeString
