@@ -10,25 +10,26 @@ import AVFoundation
 
 class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     
+    // MARK: - Properties
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet var lblRemainTime: UILabel!
     
-    var alarmTime : Date?
-    var timer: Timer?
+    private var alarmTime : Date?
+    private var timer: Timer?
     private var btnStartFlag = true
-    let timeSelector: Selector = #selector(HomeViewController.updateTime)
+    private let timeSelector: Selector = #selector(HomeViewController.updateTime)
     // default값 30분
     private var timeInterval = 30
     // default sound "삐삐"
     private var sound = "삐삐"
     private let userDefaults = UserDefaults.standard
     
-    var audioPlayer : AVAudioPlayer!
-    var audioFile : URL!
-    var audioPlayerFlag = false
+    private var audioPlayer : AVAudioPlayer!
+    private var audioFile : URL!
+    private var audioPlayerFlag = false
     
-    
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         assignBackground()
@@ -44,6 +45,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         self.sound = userDefaults.string(forKey: DataKeys.alarmSound) ?? "삐삐"
     }
     
+    // MARK: - Actions
     @IBAction func changeDatePicker(_ sender: UIDatePicker) {
         let datePickerView = sender
         let formatter = DateFormatter()
@@ -62,10 +64,11 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
                 audioPlayer.stop()
                 audioPlayerFlag = false
             }
-            changeStateButton()
+            changeState()
         }
     }
     
+    // MARK: - Configure UI
     func assignBackground(){
         let background = UIImage(named: "background.jpg")
         var imageView : UIImageView!
@@ -90,6 +93,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         datePicker.setValue(UIColor.white, forKey: "textColor")
     }
     
+    // MARK: - Methods
     func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timeSelector, userInfo: nil, repeats: true)
         datePicker.isHidden = true
@@ -103,7 +107,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         timer = nil
     }
     
-    func changeStateButton() {
+    func changeState() {
         datePicker.isHidden = false
         lblRemainTime.isHidden = true
         btnStartFlag = true

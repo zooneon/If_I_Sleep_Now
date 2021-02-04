@@ -11,6 +11,7 @@ import FirebaseAnalytics
 
 class SoundViewController: UIViewController, AVAudioPlayerDelegate {
     
+    // MARK: - Properties
     @IBOutlet weak var selectTableView: UITableView!
     
     private let soundArray = ["삐삐", "삐삐삐삐", "빠른 삐삐삐삐", "삐빅", "삐비동", "꼬꼬댁", "자명종 소리", "학교 벨소리", "긴 전화벨 소리", "비상벨", "방사능 위험"]
@@ -20,6 +21,7 @@ class SoundViewController: UIViewController, AVAudioPlayerDelegate {
     private var audioPlayer: AVAudioPlayer!
     private var audioFile: URL!
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         assignBackground()
@@ -35,10 +37,12 @@ class SoundViewController: UIViewController, AVAudioPlayerDelegate {
         self.sound = userDefaults.string(forKey: DataKeys.alarmSound) ?? "삐삐"
     }
     
+    // MARK: - Actions
     @IBAction func btnCompleteAction(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
+    // MARK: - Configure UI
     func assignBackground(){
         let background = UIImage(named: "background.jpg")
 
@@ -61,6 +65,7 @@ class SoundViewController: UIViewController, AVAudioPlayerDelegate {
         selectTableView.rowHeight = 44
     }
     
+    // MARK: - Methods
     func initSoundPlayer() {
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: audioFile)
