@@ -31,6 +31,8 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     private var audioPlayerFlag = false
     private var diffFlag = false
     
+    private var firstFlag = false
+    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,11 +77,12 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
             let alarmMin = formatter.string(from: datePicker.date)
             date2.minute = Int(alarmMin)
             
+            //알람 시간 notification 예약
             let trigger = UNCalendarNotificationTrigger(dateMatching: date2, repeats: false)
-            
             let request = UNNotificationRequest(identifier: "timerdone", content: content, trigger: trigger)
-            
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            
+            
         }
         else {
             initializeTimer()
@@ -89,6 +92,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
                 audioPlayer.stop()
                 audioPlayerFlag = false
             }
+            firstFlag = false
             changeState()
         }
     }
@@ -162,9 +166,25 @@ extension HomeViewController {
         let currentTime = formatter.date(from: nowTime)!
         var diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
         var fixedTime = 0
+        
+        
         // 현재시간이 알람시간을 지났을 경우
-        if diff < 0 {
-            diff = diff + 86400
+        if diff <= 0 {
+            if firstFlag == false {
+                diff = diff + 86400
+                firstFlag = true
+            }
+            else {
+                lblRemainTime.text = "00 : 00 : 00"
+                lblRemainTime.textColor = UIColor.white
+                lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .thin)
+                audioPlayerFlag = true
+                audioFile = Bundle.main.url(forResource: sound, withExtension: "mp3")
+                initSoundPlayer()
+                audioPlayer.play()
+                initializeTimer()
+                return
+            }
         }
         
         if diffFlag == false {
@@ -210,16 +230,6 @@ extension HomeViewController {
     }
     
     func notifyRemainTime(_ hour: String, _ min: String, _ sec: String) {
-        // 남은 시간이 없으면 타이머 종료
-        if "\(hour) : \(min) : \(sec)" == "00 : 00 : 00" {
-            audioPlayerFlag = true
-            audioFile = Bundle.main.url(forResource: sound, withExtension: "mp3")
-            initSoundPlayer()
-            audioPlayer.play()
-            initializeTimer()
-            return
-        }
-        
         // MARK: 10분마다 알림
         if timeInterval == 10 {
             if min == "00" && sec == "00" {
