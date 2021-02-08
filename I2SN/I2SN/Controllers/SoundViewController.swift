@@ -14,7 +14,7 @@ class SoundViewController: UIViewController, AVAudioPlayerDelegate {
     // MARK: - Properties
     @IBOutlet weak var selectTableView: UITableView!
     
-    private let soundArray = ["삐삐", "삐삐삐삐", "빠른 삐삐삐삐", "삐빅", "삐비동", "꼬꼬댁", "자명종 소리", "학교 벨소리", "긴 전화벨 소리", "비상벨", "방사능 위험"]
+    private let soundArray = ["삐삐", "삐삐삐삐", "빠른 삐삐삐삐", "삐비동", "꼬꼬댁", "자명종 소리", "학교 벨소리", "긴 전화벨 소리", "비상벨", "방사능 위험", "포효"]
     // default sound "삐삐"
     private var sound = "삐삐"
     private let userDefaults = UserDefaults.standard

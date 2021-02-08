@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
 
 
@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
+        UNUserNotificationCenter.current().delegate = self
         return true
     }
 

@@ -7,6 +7,7 @@
 
 import UIKit
 import AVFoundation
+import UserNotifications
 
 class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     
@@ -36,6 +37,8 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         assignBackground()
         setNavigationBar()
         setDatePicker()
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: {didAllow, Error in})
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,9 +61,30 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     @IBAction func btnStartAction(_ sender: UIButton) {
         if btnStartFlag == true {
             startTimer()
+            let formatter = DateFormatter()
+            let content = UNMutableNotificationContent()
+            content.title = "지금자면 🛌"
+            content.body = "일어날 시간 입니다!"
+            content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(sound).mp3"))
+            
+            var date2 = DateComponents()
+            formatter.dateFormat = "HH"
+            let alarmHour = formatter.string(from: datePicker.date)
+            date2.hour = Int(alarmHour)
+            formatter.dateFormat = "mm"
+            let alarmMin = formatter.string(from: datePicker.date)
+            date2.minute = Int(alarmMin)
+            
+            let trigger = UNCalendarNotificationTrigger(dateMatching: date2, repeats: false)
+            
+            let request = UNNotificationRequest(identifier: "timerdone", content: content, trigger: trigger)
+            
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         }
         else {
             initializeTimer()
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            
             if audioPlayerFlag == true {
                 audioPlayer.stop()
                 audioPlayerFlag = false
@@ -138,7 +162,6 @@ extension HomeViewController {
         let currentTime = formatter.date(from: nowTime)!
         var diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
         var fixedTime = 0
-        
         // 현재시간이 알람시간을 지났을 경우
         if diff < 0 {
             diff = diff + 86400
@@ -196,6 +219,7 @@ extension HomeViewController {
             initializeTimer()
             return
         }
+        
         // MARK: 10분마다 알림
         if timeInterval == 10 {
             if min == "00" && sec == "00" {
@@ -232,6 +256,7 @@ extension HomeViewController {
                 setTimeAlert(remainTimeString: "\(Int(hour)!)시간")
             }
         }
+        
     }
     
     func remainTimeString(_ hour: String, _ min: String) -> String {
