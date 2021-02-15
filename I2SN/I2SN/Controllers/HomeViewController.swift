@@ -212,11 +212,6 @@ extension HomeViewController {
         diffTemp = diffTemp/60
         let hour = integerToString(diffTemp)
         
-        // 알람 횟수 제한
-        if diff > fixedTime {
-            notifyRemainTime(hour, min, sec)
-        }
-        
         let timeString = "\(hour) : \(min) : \(sec)"
         lblRemainTime.text = timeString
         lblRemainTime.textColor = UIColor.white
@@ -229,67 +224,6 @@ extension HomeViewController {
         } else {
             return String(number)
         }
-    }
-    
-    func notifyRemainTime(_ hour: String, _ min: String, _ sec: String) {
-        // MARK: 10분마다 알림
-        if timeInterval == 10 {
-            if min == "00" && sec == "00" {
-                setTimeAlert(remainTimeString: remainTimeString(hour, min))
-            }
-            if min == "10" && sec == "00" {
-                setTimeAlert(remainTimeString: remainTimeString(hour, min))
-            }
-            if min == "20" && sec == "00" {
-                setTimeAlert(remainTimeString: remainTimeString(hour, min))
-            }
-            if min == "30" && sec == "00" {
-                setTimeAlert(remainTimeString: remainTimeString(hour, min))
-            }
-            if min == "40" && sec == "00" {
-                setTimeAlert(remainTimeString: remainTimeString(hour, min))
-            }
-            if min == "50" && sec == "00" {
-                setTimeAlert(remainTimeString: remainTimeString(hour, min))
-            }
-        }
-        // MARK: 30분마다 알림
-        if timeInterval == 30 {
-            if min == "30" && sec == "00" {
-                setTimeAlert(remainTimeString: remainTimeString(hour, min))
-            }
-            if min == "00" && sec == "00" {
-                setTimeAlert(remainTimeString: remainTimeString(hour, min))
-            }
-        }
-        // MARK: 1시간마다 알림
-        if timeInterval == 60 {
-            if min == "00" && sec == "00" {
-                setTimeAlert(remainTimeString: "\(Int(hour)!)시간")
-            }
-        }
-        
-    }
-    
-    func remainTimeString(_ hour: String, _ min: String) -> String {
-        if hour == "00" {
-            return "\(min)분"
-        }
-        
-        if min == "00" {
-            return "\(Int(hour)!)시간"
-        }
-        
-        return "\(Int(hour)!)시간 \(min)분"
-    }
-    
-    // TODO: 삭제하고 UserNotification 등록
-    func setTimeAlert(remainTimeString: String) {
-        let timeAlert = UIAlertController(title: "🛌 지금자면", message: "\(remainTimeString) 잘 수 있습니다!", preferredStyle: UIAlertController.Style.alert)
-        let onAction = UIAlertAction(title: "네 알겠습니다!", style: UIAlertAction.Style.default, handler: nil)
-        
-        timeAlert.addAction(onAction)
-        present(timeAlert, animated: true, completion: nil)
     }
 }
 
