@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func scheduleAppRefresh() {
         let request = BGAppRefreshTaskRequest(identifier: "com.hand.I2SN.notifyRemainTime")
-        request.earliestBeginDate = Date(timeIntervalSinceNow: Double(timeInterval * 60))
+        request.earliestBeginDate = Date(timeIntervalSinceNow: 60)
             do {
                 try BGTaskScheduler.shared.submit(request)
             } catch {

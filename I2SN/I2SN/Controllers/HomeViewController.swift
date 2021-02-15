@@ -84,13 +84,13 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBAction func btnStartAction(_ sender: UIButton) {
         if btnStartFlag == true {
+            notifyRemainTime()
             let date = Date()
             let formatter = DateFormatter()
             formatter.dateFormat = "dd HH:mm:ss"
             let nowTime = formatter.string(from: date as Date)
             let currentTime = formatter.date(from: nowTime)!
-            var diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
-            diff = diff - 1
+            let diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
             var diffTemp = diff
             
             // MARK: 남은 시간 계산
@@ -200,14 +200,12 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
 // MARK: - feature: Notification
 extension HomeViewController {
     @objc func updateTime() {
-        var fixedTime = 0
-        
         let formatter = DateFormatter()
         let date = Date()
         formatter.dateFormat = "dd HH:mm:ss"
         let nowTime = formatter.string(from: date as Date)
         let currentTime = formatter.date(from: nowTime)!
-        var diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
+        let diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
     
         if diff <= 0 {
             lblRemainTime.text = "00 : 00 : 00"
@@ -221,22 +219,6 @@ extension HomeViewController {
             return
         }
 
-        diff = diff - 1
-        
-        if diffFlag == false {
-            diffFlag = true
-            
-            if timeInterval == 10 {
-                fixedTime = diff - 3600
-            }
-            else if timeInterval == 30 {
-                fixedTime = diff - 10800
-            }
-            else if timeInterval == 60 {
-                fixedTime = diff - 14400
-            }
-        }
-        
         var diffTemp = diff
         
         // MARK: 남은 시간 계산
@@ -264,6 +246,31 @@ extension HomeViewController {
 // MARK: - Background task
 extension HomeViewController: BackgroundDelegate {
     func notifyRemainTime() {
-        <#code#>
+        let formatter = DateFormatter()
+        let date = Date()
+        formatter.dateFormat = "dd HH:mm:ss"
+        let nowTime = formatter.string(from: date as Date)
+        let currentTime = formatter.date(from: nowTime)!
+        let diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
+        
+        var diffTemp = diff
+        
+        // MARK: 남은 시간 계산
+        diffTemp = diffTemp/60
+        let min = integerToString(diffTemp%60)
+        diffTemp = diffTemp/60
+        let hour = integerToString(diffTemp)
+        
+        let timeString = "\(hour) : \(min) 잘 수 있습니다!"
+        
+        let content = UNMutableNotificationContent()
+        content.title = "지금자면 🛌"
+        content.body = timeString
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+        let request = UNNotificationRequest(identifier: "time", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
+        
     }
 }
