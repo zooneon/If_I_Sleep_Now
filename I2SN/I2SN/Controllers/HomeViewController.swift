@@ -31,8 +31,6 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     private var audioPlayerFlag = false
     private var diffFlag = false
     
-    private var firstFlag = false
-    
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,15 +53,57 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     @IBAction func changeDatePicker(_ sender: UIDatePicker) {
         let datePickerView = sender
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        let settingTime = formatter.string(from: datePickerView.date)
+        formatter.dateFormat = "dd HH:mm"
+        var settingTime = formatter.string(from: datePickerView.date)
         alarmTime = formatter.date(from: settingTime)
+
+        let date = Date()
+        formatter.dateFormat = "dd HH:mm:ss"
+        let nowTime = formatter.string(from: date as Date)
+        let currentTime = formatter.date(from: nowTime)!
+        let diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
+        
+        if diff < 0 {
+            formatter.dateFormat = "dd"
+            var alarmDay = formatter.string(from: datePicker.date)
+            var alarmIntDay = Int(alarmDay)
+            alarmIntDay = alarmIntDay! + 1
+            
+            alarmDay = String(alarmIntDay!)
+            
+            formatter.dateFormat = "HH:mm"
+            settingTime = formatter.string(from: datePicker.date)
+            formatter.dateFormat = "dd HH:mm"
+            settingTime = "\(alarmDay) \(settingTime)"
+            alarmTime = formatter.date(from: settingTime)
+        }
+        
     }
     
     @IBAction func btnStartAction(_ sender: UIButton) {
         if btnStartFlag == true {
-            startTimer()
+            let date = Date()
             let formatter = DateFormatter()
+            formatter.dateFormat = "dd HH:mm:ss"
+            let nowTime = formatter.string(from: date as Date)
+            let currentTime = formatter.date(from: nowTime)!
+            var diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
+            diff = diff - 1
+            var diffTemp = diff
+            
+            // MARK: 남은 시간 계산
+            let sec = integerToString(diffTemp%60)
+            diffTemp = diffTemp/60
+            let min = integerToString(diffTemp%60)
+            diffTemp = diffTemp/60
+            let hour = integerToString(diffTemp)
+            
+            let timeString = "\(hour) : \(min) : \(sec)"
+            lblRemainTime.text = timeString
+            lblRemainTime.textColor = UIColor.white
+            lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .thin)
+            startTimer()
+            
             let content = UNMutableNotificationContent()
             content.title = "지금자면 🛌"
             content.body = "일어날 시간 입니다!"
@@ -92,7 +132,6 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
                 audioPlayer.stop()
                 audioPlayerFlag = false
             }
-            firstFlag = false
             changeState()
         }
     }
@@ -124,7 +163,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     
     // MARK: - Methods
     func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: timeSelector, userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: timeSelector, userInfo: nil, repeats: true)
         datePicker.isHidden = true
         lblRemainTime.isHidden = false
         btnStartFlag = false
@@ -159,33 +198,28 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
 // MARK: - feature: Notification
 extension HomeViewController {
     @objc func updateTime() {
+        var fixedTime = 0
+        
         let formatter = DateFormatter()
         let date = Date()
-        formatter.dateFormat = "HH:mm:ss"
+        formatter.dateFormat = "dd HH:mm:ss"
         let nowTime = formatter.string(from: date as Date)
         let currentTime = formatter.date(from: nowTime)!
         var diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
-        var fixedTime = 0
-        
-        
-        // 현재시간이 알람시간을 지났을 경우
+    
         if diff <= 0 {
-            if firstFlag == false {
-                diff = diff + 86400
-                firstFlag = true
-            }
-            else {
-                lblRemainTime.text = "00 : 00 : 00"
-                lblRemainTime.textColor = UIColor.white
-                lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .thin)
-                audioPlayerFlag = true
-                audioFile = Bundle.main.url(forResource: sound, withExtension: "mp3")
-                initSoundPlayer()
-                audioPlayer.play()
-                initializeTimer()
-                return
-            }
+            lblRemainTime.text = "00 : 00 : 00"
+            lblRemainTime.textColor = UIColor.white
+            lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .thin)
+            audioPlayerFlag = true
+            audioFile = Bundle.main.url(forResource: sound, withExtension: "mp3")
+            initSoundPlayer()
+            audioPlayer.play()
+            initializeTimer()
+            return
         }
+
+        diff = diff - 1
         
         if diffFlag == false {
             diffFlag = true
