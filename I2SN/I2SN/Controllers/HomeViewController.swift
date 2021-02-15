@@ -16,6 +16,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet var lblRemainTime: UILabel!
     
+    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     private var alarmTime : Date?
     private var timer: Timer?
     private var btnStartFlag = true
@@ -39,6 +40,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         setDatePicker()
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: {didAllow, Error in})
+        appDelegate.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -278,5 +280,12 @@ extension HomeViewController {
         
         timeAlert.addAction(onAction)
         present(timeAlert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Background task
+extension HomeViewController: BackgroundDelegate {
+    func notifyRemainTime() {
+        <#code#>
     }
 }

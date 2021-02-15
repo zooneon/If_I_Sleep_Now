@@ -7,20 +7,47 @@
 
 import UIKit
 import Firebase
+import BackgroundTasks
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
-
+    var delegate: BackgroundDelegate?
+    var timeInterval = UserDefaults.standard.integer(forKey: DataKeys.timeInterval) != 0 ? UserDefaults.standard.integer(forKey: DataKeys.timeInterval) : 30
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
         UNUserNotificationCenter.current().delegate = self
+        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.hand.I2SN.notifyRemainTime", using: nil) { task in
+            self.handleAppRefresh(task: task as! BGAppRefreshTask)
+        }
+        
         return true
     }
-
+    
+    func scheduleAppRefresh() {
+        let request = BGAppRefreshTaskRequest(identifier: "com.hand.I2SN.notifyRemainTime")
+        request.earliestBeginDate = Date(timeIntervalSinceNow: Double(timeInterval * 60))
+            do {
+                try BGTaskScheduler.shared.submit(request)
+            } catch {
+                print("Could not schedule app refresh: \(error.localizedDescription)")
+            }
+        }
+    
+    func handleAppRefresh(task: BGAppRefreshTask) {
+        scheduleAppRefresh()
+        
+        task.expirationHandler = {
+            task.setTaskCompleted(success: false)
+        }
+        
+        delegate?.notifyRemainTime()
+        task.setTaskCompleted(success: true)
+    }
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
