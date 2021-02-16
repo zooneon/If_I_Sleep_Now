@@ -8,6 +8,7 @@
 import UIKit
 import AVFoundation
 import UserNotifications
+import AudioToolbox
 
 class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     
@@ -30,6 +31,8 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     private var audioPlayer : AVAudioPlayer!
     private var audioFile : URL!
     private var audioPlayerFlag = false
+    
+    private var vibrationFlag = false
     private var diffFlag = false
     
     //MARK: - Lifecycle
@@ -135,6 +138,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
                 audioPlayerFlag = false
             }
             changeState()
+            vibrationFlag = false
         }
     }
     
@@ -193,7 +197,17 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         } catch let error as NSError {
             print("initError : \(error)")
         }
-        
+    }
+    
+    func vibration() {
+        AudioServicesPlayAlertSoundWithCompletion(kSystemSoundID_Vibrate) {
+            if self.vibrationFlag == true {
+                self.vibration()
+            }
+            else {
+                return
+            }
+        }
     }
 }
 
@@ -211,10 +225,15 @@ extension HomeViewController {
             lblRemainTime.text = "00 : 00 : 00"
             lblRemainTime.textColor = UIColor.white
             lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .thin)
+            
             audioPlayerFlag = true
             audioFile = Bundle.main.url(forResource: sound, withExtension: "mp3")
             initSoundPlayer()
             audioPlayer.play()
+            
+            vibrationFlag = true
+            vibration()
+            
             initializeTimer()
             return
         }
