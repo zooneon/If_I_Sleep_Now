@@ -59,7 +59,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         task.expirationHandler = {
             task.setTaskCompleted(success: false)
         }
-
+        
+        print("debug")
         calculateRemainTime()
         task.setTaskCompleted(success: true)
     }

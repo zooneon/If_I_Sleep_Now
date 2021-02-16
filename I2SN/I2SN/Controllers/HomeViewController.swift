@@ -113,19 +113,24 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
             content.body = "일어날 시간 입니다!"
             content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(sound).mp3"))
             
-            var date2 = DateComponents()
+            var alarmDate = DateComponents()
             formatter.dateFormat = "HH"
             let alarmHour = formatter.string(from: datePicker.date)
-            date2.hour = Int(alarmHour)
+            alarmDate.hour = Int(alarmHour)
             formatter.dateFormat = "mm"
             let alarmMin = formatter.string(from: datePicker.date)
-            date2.minute = Int(alarmMin)
+            alarmDate.minute = Int(alarmMin)
             
             //알람 시간 notification 예약
-            let trigger = UNCalendarNotificationTrigger(dateMatching: date2, repeats: false)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: alarmDate, repeats: false)
             let request = UNNotificationRequest(identifier: "timerdone", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             
+            let countNotification = diff/60
+            let remainNotification = diff%60
+            let remainHour = countNotification
+            
+            notificationTime(current: 1, countNotification: countNotification, remainNotification: remainNotification, remainHour: remainHour, TimeString: "notification")
             
         }
         else {
@@ -206,6 +211,21 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
             else {
                 return
             }
+        }
+    }
+    
+    func notificationTime(current: Int, countNotification: Int, remainNotification: Int, remainHour: Int, TimeString: String) {
+        if current <= countNotification {
+            print("asd")
+            let contentNotification = UNMutableNotificationContent()
+            contentNotification.title = "지금자면 🛌"
+            contentNotification.body = "\(remainHour)시간 잘 수 있습니다!"
+            
+            let triggerTime = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(remainNotification), repeats: false)
+            let requestTime = UNNotificationRequest(identifier: "notification", content: contentNotification, trigger: triggerTime)
+            UNUserNotificationCenter.current().add(requestTime, withCompletionHandler: nil)
+            
+            self.notificationTime(current: current + 1, countNotification: countNotification, remainNotification: remainNotification + 60, remainHour: remainHour - 1, TimeString: "\(TimeString)\(current)")
         }
     }
 }
