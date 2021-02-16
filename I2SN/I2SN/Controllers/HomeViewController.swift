@@ -17,7 +17,6 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet var lblRemainTime: UILabel!
     
-    private let appDelegate = UIApplication.shared.delegate as! AppDelegate
     private var alarmTime : Date?
     private var timer: Timer?
     private var btnStartFlag = true
@@ -278,17 +277,5 @@ extension HomeViewController {
         } else {
             return String(number)
         }
-    }
-}
-
-extension HomeViewController {
-    func notifyRemainTime() {
-        let content = UNMutableNotificationContent()
-        content.title = "지금자면 🛌"
-        content.body = appDelegate.timeString
-        
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 120, repeats: true)
-        let request = UNNotificationRequest(identifier: "time", content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
 }
