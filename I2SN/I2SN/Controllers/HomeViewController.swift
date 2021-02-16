@@ -40,7 +40,6 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         setDatePicker()
         
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: {didAllow, Error in})
-        appDelegate.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -243,34 +242,14 @@ extension HomeViewController {
     }
 }
 
-// MARK: - Background task
-extension HomeViewController: BackgroundDelegate {
+extension HomeViewController {
     func notifyRemainTime() {
-        let formatter = DateFormatter()
-        let date = Date()
-        formatter.dateFormat = "dd HH:mm:ss"
-        let nowTime = formatter.string(from: date as Date)
-        let currentTime = formatter.date(from: nowTime)!
-        let diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
-        
-        var diffTemp = diff
-        
-        // MARK: 남은 시간 계산
-        diffTemp = diffTemp/60
-        let min = integerToString(diffTemp%60)
-        diffTemp = diffTemp/60
-        let hour = integerToString(diffTemp)
-        
-        let timeString = "\(hour) : \(min) 잘 수 있습니다!"
-        
         let content = UNMutableNotificationContent()
         content.title = "지금자면 🛌"
-        content.body = timeString
+        content.body = appDelegate.timeString
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 120, repeats: true)
         let request = UNNotificationRequest(identifier: "time", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        
-        
     }
 }
