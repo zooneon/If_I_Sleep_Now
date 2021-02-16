@@ -16,7 +16,6 @@
 		7964CB2A25CB09D600EFC779 /* SoundCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7964CB2925CB09D600EFC779 /* SoundCell.swift */; };
 		7964CB2F25CB1A7D00EFC779 /* SoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7964CB2E25CB1A7D00EFC779 /* SoundViewController.swift */; };
 		7964CB3425CB2A4C00EFC779 /* SelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7964CB3325CB2A4C00EFC779 /* SelectCell.swift */; };
-		79A64E0A25DA98BA00351C59 /* BackgroundDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A64E0925DA98BA00351C59 /* BackgroundDelegate.swift */; };
 		7EEF986FCC1691BA0F2FC3F5 /* Pods_I2SNTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F154CCD4A4DB7AC3F5699F9B /* Pods_I2SNTests.framework */; };
 		88054D4125CE7A9A001A0D21 /* 자명종 소리.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88054D3625CE7A99001A0D21 /* 자명종 소리.mp3 */; };
 		88054D4225CE7A9A001A0D21 /* 삐비동.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 88054D3725CE7A99001A0D21 /* 삐비동.mp3 */; };
@@ -70,7 +69,6 @@
 		7964CB2925CB09D600EFC779 /* SoundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundCell.swift; sourceTree = "<group>"; };
 		7964CB2E25CB1A7D00EFC779 /* SoundViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundViewController.swift; sourceTree = "<group>"; };
 		7964CB3325CB2A4C00EFC779 /* SelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCell.swift; sourceTree = "<group>"; };
-		79A64E0925DA98BA00351C59 /* BackgroundDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundDelegate.swift; sourceTree = "<group>"; };
 		88054D3625CE7A99001A0D21 /* 자명종 소리.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "자명종 소리.mp3"; sourceTree = "<group>"; };
 		88054D3725CE7A99001A0D21 /* 삐비동.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "삐비동.mp3"; sourceTree = "<group>"; };
 		88054D3825CE7A99001A0D21 /* 긴 전화벨 소리.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "긴 전화벨 소리.mp3"; sourceTree = "<group>"; };
@@ -186,14 +184,6 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		79A64E0825DA987500351C59 /* Delegates */ = {
-			isa = PBXGroup;
-			children = (
-				79A64E0925DA98BA00351C59 /* BackgroundDelegate.swift */,
-			);
-			path = Delegates;
-			sourceTree = "<group>";
-		};
 		8840245A25BACE8400CB1ADF = {
 			isa = PBXGroup;
 			children = (
@@ -225,7 +215,6 @@
 				7960859F25BDEE4E00CBE361 /* Controllers */,
 				796085A025BDEE7900CBE361 /* Views */,
 				796085C125C270FE00CBE361 /* Utilities */,
-				79A64E0825DA987500351C59 /* Delegates */,
 				8840246F25BACE8500CB1ADF /* Assets.xcassets */,
 				8840247425BACE8500CB1ADF /* Info.plist */,
 				7964CAB825C6EC1F00EFC779 /* GoogleService-Info.plist */,
@@ -521,7 +510,6 @@
 			files = (
 				796085C325C2713600CBE361 /* DataKeys.swift in Sources */,
 				7964CB2A25CB09D600EFC779 /* SoundCell.swift in Sources */,
-				79A64E0A25DA98BA00351C59 /* BackgroundDelegate.swift in Sources */,
 				7964CB3425CB2A4C00EFC779 /* SelectCell.swift in Sources */,
 				796085BD25C04E3B00CBE361 /* TimeCell.swift in Sources */,
 				793A21E425BBFF350065BCC3 /* HomeViewController.swift in Sources */,

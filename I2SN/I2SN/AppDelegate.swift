@@ -12,8 +12,9 @@ import BackgroundTasks
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
-
-    var delegate: BackgroundDelegate?
+    
+    var alarmTime : Date?
+    var timeString = "시간을 계산하는 중입니다."
     var timeInterval = UserDefaults.standard.integer(forKey: DataKeys.timeInterval) != 0 ? UserDefaults.standard.integer(forKey: DataKeys.timeInterval) : 30
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -58,11 +59,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         task.expirationHandler = {
             task.setTaskCompleted(success: false)
         }
-        
-        delegate?.notifyRemainTime()
+
+        calculateRemainTime()
         task.setTaskCompleted(success: true)
     }
     
+    func calculateRemainTime() {
+        let formatter = DateFormatter()
+        let date = Date()
+        formatter.dateFormat = "dd HH:mm:ss"
+        let nowTime = formatter.string(from: date as Date)
+        let currentTime = formatter.date(from: nowTime)!
+        let diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
+        
+        var diffTemp = diff
+        
+        // MARK: 남은 시간 계산
+        diffTemp = diffTemp/60
+        let min = diffTemp%60
+        diffTemp = diffTemp/60
+        let hour = diffTemp
+        
+        let timeString = "\(hour)시간 \(min)분 잘 수 있습니다."
+        self.timeString = timeString
+    }
+
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
