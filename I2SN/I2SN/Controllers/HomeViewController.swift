@@ -85,7 +85,6 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBAction func btnStartAction(_ sender: UIButton) {
         if btnStartFlag == true {
-            notifyRemainTime()
             let date = Date()
             let formatter = DateFormatter()
             formatter.dateFormat = "dd HH:mm:ss"
@@ -125,8 +124,8 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
             let request = UNNotificationRequest(identifier: "timerdone", content: content, trigger: trigger)
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             
-            let countNotification = diff/60
-            let remainNotification = diff%60
+            let countNotification = diff/(timeInterval * 60)
+            let remainNotification = diff%(timeInterval * 60)
             let remainHour = countNotification
             
             notificationTime(current: 1, countNotification: countNotification, remainNotification: remainNotification, remainHour: remainHour, TimeString: "notification")
@@ -215,16 +214,15 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     
     func notificationTime(current: Int, countNotification: Int, remainNotification: Int, remainHour: Int, TimeString: String) {
         if current <= countNotification {
-            print("asd")
             let contentNotification = UNMutableNotificationContent()
             contentNotification.title = "지금자면 🛌"
             contentNotification.body = "\(remainHour)시간 잘 수 있습니다!"
             
             let triggerTime = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(remainNotification), repeats: false)
-            let requestTime = UNNotificationRequest(identifier: "notification", content: contentNotification, trigger: triggerTime)
+            let requestTime = UNNotificationRequest(identifier: TimeString, content: contentNotification, trigger: triggerTime)
             UNUserNotificationCenter.current().add(requestTime, withCompletionHandler: nil)
             
-            self.notificationTime(current: current + 1, countNotification: countNotification, remainNotification: remainNotification + 60, remainHour: remainHour - 1, TimeString: "\(TimeString)\(current)")
+            self.notificationTime(current: current + 1, countNotification: countNotification, remainNotification: remainNotification + (timeInterval * 60), remainHour: remainHour - 1, TimeString: "\(current)")
         }
     }
 }
