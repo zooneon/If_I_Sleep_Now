@@ -1,7 +1,9 @@
-<img align="left" width="100" height="100" src="https://user-images.githubusercontent.com/59433441/108235549-42cb2580-7189-11eb-92af-34d5129624b0.jpg" alt="icon">
+<img align="left" width="120" height="120" src="https://user-images.githubusercontent.com/59433441/108235549-42cb2580-7189-11eb-92af-34d5129624b0.jpg" alt="icon">
 
 # 지금자면
 > ⏰ 일어날 시간을 정하고 기상 시간까지 얼마나 잘 수 있는지 알림을 통해 알려주는 시스템
+<br/>
+
 ## 🚀 Link
 **👇 click!**
 
@@ -11,19 +13,19 @@
 [<img align="left" width="85" height="40" src="https://blog.kakaocdn.net/dn/bgnfhv/btqMwoagC3j/4zc4sMUm0XKGweWYHynnK0/img.png" alt="figma">](https://www.figma.com/file/mfBOZfGSjmmG66m82JGzXM/I2SN-prototype?node-id=0%3A1)
 <br/>
 <br/>
-<br/>
 ## ✨ About
 ### Develop Environment
 - Xcode 12.4
 - Swift 5.0
 ### iOS Deployment Target
 - iOS 13.0+
+<br/>
+
 ## ⚒ Features
 
 <img src="https://github.com/19-47/If_I_Sleep_Now/blob/develop/images/home.gif"
   width="200"
   height="420">
-<br/>
 <br/>
 
 **Main**
@@ -36,7 +38,6 @@
   width="200"
   height="420">
 <br/>
-<br/>
 
 **Setting**
 - 알림 받을 시간 간격을 10분, 30분, 1시간 중 선택할 수 있다.
@@ -46,7 +47,6 @@
 <img src="https://github.com/19-47/If_I_Sleep_Now/blob/develop/images/sound.gif"
   width="200"
   height="420">
-<br/>
 <br/>
 
 **Sound setting**
@@ -58,7 +58,6 @@
   width="200"
   height="420">
 <br/>
-<br/>
 
 **Notification**
 - 알림은 배너, 잠금화면에 나타나며 설정에서 변경할 수 있다.
@@ -68,7 +67,6 @@
 <img src="https://github.com/19-47/If_I_Sleep_Now/blob/develop/images/alarm.gif"
   width="200"
   height="420">
-<br/>
 <br/>
 
 **Alarm**
