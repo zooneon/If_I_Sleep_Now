@@ -86,6 +86,8 @@ extension SoundViewController: UITableViewDataSource {
         let cell = selectTableView.dequeueReusableCell(withIdentifier: "SelectCell", for: indexPath)
         cell.textLabel?.text = soundArray[indexPath.row]
         cell.textLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+        cell.textLabel?.textColor = .black
+        cell.backgroundColor = .white
         return cell
     }
 }
