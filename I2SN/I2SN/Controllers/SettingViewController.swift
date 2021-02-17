@@ -58,6 +58,7 @@ class SettingViewController: UIViewController {
     
     func setNavigationBar() {
         navigationItem.hidesBackButton = true
+        navigationController?.navigationBar.barStyle = .black
     }
     
     func setTableViewLayout() {

@@ -58,6 +58,7 @@ class SoundViewController: UIViewController, AVAudioPlayerDelegate {
     
     func setNavigationBar() {
         navigationItem.hidesBackButton = true
+        navigationController?.navigationBar.barStyle = .black
     }
     
     func setTableViewLayout() {

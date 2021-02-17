@@ -163,6 +163,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.navigationBar.barStyle = .black
     }
     
     func setDatePicker() {
