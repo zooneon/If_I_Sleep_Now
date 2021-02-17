@@ -17,7 +17,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var btnStart: UIButton!
     @IBOutlet var lblRemainTime: UILabel!
     
-    private var alarmTime : Date?
+    private var alarmTime: Date?
     private var timer: Timer?
     private var btnStartFlag = true
     private let timeSelector: Selector = #selector(HomeViewController.updateTime)
@@ -249,28 +249,30 @@ extension HomeViewController {
     
     // MARK: 알림 예약 설정
     func notificateTime(current: Int, countNotification: Int, remainNotification: Int, remainSecond: Int, TimeString: String) {
-        var remainSecond = remainSecond
-        
         if current <= countNotification {
             let contentNotification = UNMutableNotificationContent()
             contentNotification.title = "지금자면 🛌"
             
             if timeInterval == 60 {
-                remainSecond = remainSecond/(timeInterval * 60)
-                contentNotification.body = "\(remainSecond)시간 잘 수 있습니다."
+                let remainHour = remainSecond / (timeInterval * 60)
+                contentNotification.body = "\(remainHour)시간 잘 수 있습니다."
             }
             else {
-                remainSecond = remainSecond/60
-                let min = remainSecond%60
-                let hour = remainSecond/60
+                let dividedSecond = remainSecond / 60
+                let remainMin = dividedSecond % 60
+                let remainHour = dividedSecond / 60
                 
-                if min == 0 {
-                    contentNotification.body = "\(hour)시간 잘 수 있습니다."
+                if remainMin == 0 {
+                    contentNotification.body = "\(remainHour)시간 잘 수 있습니다."
                 }
                 else {
-                    contentNotification.body = "\(hour)시간 \(min)분 잘 수 있습니다."
+                    if remainHour == 0 {
+                        contentNotification.body = "\(remainMin)분 잘 수 있습니다."
+                    }
+                    else {
+                        contentNotification.body = "\(remainHour)시간 \(remainMin)분 잘 수 있습니다."
+                    }
                 }
-                
             }
             
             let triggerTime = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(remainNotification), repeats: false)
@@ -296,7 +298,7 @@ extension HomeViewController {
         // 알람 notification 예약
         let content = UNMutableNotificationContent()
         content.title = "지금자면 🛌"
-        content.body = "일어날 시간 입니다!"
+        content.body = "일어날 시간입니다!"
         content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(sound).mp3"))
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: alarmDate, repeats: false)
