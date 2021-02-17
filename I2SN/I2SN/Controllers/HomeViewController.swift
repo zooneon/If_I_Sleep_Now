@@ -40,7 +40,6 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         assignBackground()
         setNavigationBar()
         setDatePicker()
-        
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound], completionHandler: {didAllow, Error in})
     }
     
@@ -54,19 +53,16 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     
     // MARK: - Actions
     @IBAction func changeDatePicker(_ sender: UIDatePicker) {
+        // 알람 시간 설정
         let datePickerView = sender
         let formatter = DateFormatter()
         formatter.dateFormat = "dd HH:mm"
         var settingTime = formatter.string(from: datePickerView.date)
         alarmTime = formatter.date(from: settingTime)
-
-        let date = Date()
-        formatter.dateFormat = "dd HH:mm:ss"
-        let nowTime = formatter.string(from: date as Date)
-        let currentTime = formatter.date(from: nowTime)!
-        let diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
         
-        if diff < 0 {
+        // 다음날로 알람을 설정할 경우
+        let timeDifferent = calculateTimeDifferent()
+        if timeDifferent < 0 {
             formatter.dateFormat = "dd"
             var alarmDay = formatter.string(from: datePicker.date)
             var alarmIntDay = Int(alarmDay)
@@ -80,66 +76,28 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
             settingTime = "\(alarmDay) \(settingTime)"
             alarmTime = formatter.date(from: settingTime)
         }
-        
     }
     
     @IBAction func btnStartAction(_ sender: UIButton) {
         if btnStartFlag == true {
-            let date = Date()
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd HH:mm:ss"
-            let nowTime = formatter.string(from: date as Date)
-            let currentTime = formatter.date(from: nowTime)!
-            let diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
-            var diffTemp = diff
-            
-            // MARK: 남은 시간 계산
-            let sec = integerToString(diffTemp%60)
-            diffTemp = diffTemp/60
-            let min = integerToString(diffTemp%60)
-            diffTemp = diffTemp/60
-            let hour = integerToString(diffTemp)
-            
-            let timeString = "\(hour) : \(min) : \(sec)"
-            lblRemainTime.text = timeString
-            lblRemainTime.textColor = UIColor.white
-            lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .thin)
+            let timeDifferent = calculateTimeDifferent()
+            let remainTimeDic = calculateRemainTime(timeDifferent)
+            setRemainTimeLabel(remainTimeDic)
             startTimer()
-            
-            let content = UNMutableNotificationContent()
-            content.title = "지금자면 🛌"
-            content.body = "일어날 시간 입니다!"
-            content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(sound).mp3"))
-            
-            var alarmDate = DateComponents()
-            formatter.dateFormat = "HH"
-            let alarmHour = formatter.string(from: datePicker.date)
-            alarmDate.hour = Int(alarmHour)
-            formatter.dateFormat = "mm"
-            let alarmMin = formatter.string(from: datePicker.date)
-            alarmDate.minute = Int(alarmMin)
-            
-            //알람 시간 notification 예약
-            let trigger = UNCalendarNotificationTrigger(dateMatching: alarmDate, repeats: false)
-            let request = UNNotificationRequest(identifier: "timerdone", content: content, trigger: trigger)
-            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-            
-            let countNotification = diff/(timeInterval * 60)
-            let remainNotification = diff%(timeInterval * 60)
-            let remainHour = countNotification
-            
-            notificationTime(current: 1, countNotification: countNotification, remainNotification: remainNotification, remainHour: remainHour, TimeString: "notification")
-            
+            startNotification(timeDifferent)
+            setAlarm()
         }
         else {
             initializeTimer()
+            changeState()
+            // 모든 알림 삭제
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-            
+            // 알람 소리 종료
             if audioPlayerFlag == true {
                 audioPlayer.stop()
                 audioPlayerFlag = false
             }
-            changeState()
+            // 알람 진동 종료
             vibrationFlag = false
         }
     }
@@ -178,7 +136,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         btnStartFlag = false
         btnStart.setTitle("그만", for: .normal)
     }
-    
+    // 타이머 초기화
     func initializeTimer() {
         diffFlag = false
         timer?.invalidate()
@@ -191,6 +149,47 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         btnStartFlag = true
         btnStart.setTitle("시작", for: .normal)
     }
+    // 알람 시간과 현재 시간의 차이 계산
+    func calculateTimeDifferent() -> Int {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd HH:mm:ss"
+        let nowTime = formatter.string(from: date as Date)
+        let currentTime = formatter.date(from: nowTime)!
+        return Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
+    }
+    
+    // MARK: 남은 시간 계산
+    func calculateRemainTime(_ timeDifferent: Int) -> [String: String] {
+        var timeDifferent = timeDifferent
+        
+        let sec = integerToString(timeDifferent % 60)
+        timeDifferent = timeDifferent / 60
+        let min = integerToString(timeDifferent % 60)
+        timeDifferent = timeDifferent / 60
+        let hour = integerToString(timeDifferent)
+        
+        return ["sec": sec, "min": min, "hour": hour]
+    }
+    
+    func integerToString(_ number: Int) -> String {
+        // 10보다 작을 경우 앞에 0을 추가 (eg: 7 -> 07)
+        if number < 10 {
+            return "0" + String(number)
+        } else {
+            return String(number)
+        }
+    }
+    // view 설정
+    func setRemainTimeLabel(_ remainTimeDic: [String: String]) {
+        let hour = remainTimeDic["hour"]
+        let min = remainTimeDic["min"]
+        let sec = remainTimeDic["sec"]
+        let timeString = "\(hour!) : \(min!) : \(sec!)"
+        lblRemainTime.text = timeString
+        lblRemainTime.textColor = UIColor.white
+        lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .thin)
+    }
     
     func initSoundPlayer() {
         do {
@@ -202,18 +201,54 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     
-    func vibration() {
+    func startVibration() {
         AudioServicesPlayAlertSoundWithCompletion(kSystemSoundID_Vibrate) {
             if self.vibrationFlag == true {
-                self.vibration()
+                self.startVibration()
             }
             else {
                 return
             }
         }
     }
+}
+
+// MARK: - feature: Notification
+extension HomeViewController {
+    @objc func updateTime() {
+        let timeDifferent = calculateTimeDifferent()
+        if timeDifferent <= 0 {
+            lblRemainTime.text = "00 : 00 : 00"
+            lblRemainTime.textColor = UIColor.white
+            lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .thin)
+            // 알람 소리 설정
+            audioPlayerFlag = true
+            audioFile = Bundle.main.url(forResource: sound, withExtension: "mp3")
+            initSoundPlayer()
+            audioPlayer.play()
+            // 알람 진동 설정
+            vibrationFlag = true
+            startVibration()
+            // 타이머 초기화
+            initializeTimer()
+            return
+        }
+
+        let remainTimeDic = calculateRemainTime(timeDifferent)
+        setRemainTimeLabel(remainTimeDic)
+    }
     
-    func notificationTime(current: Int, countNotification: Int, remainNotification: Int, remainHour: Int, TimeString: String) {
+    // MARK: 알림 시작
+    func startNotification(_ timeDifferent: Int) {
+        let countNotification = timeDifferent / (timeInterval * 60)
+        let remainNotification = timeDifferent % (timeInterval * 60)
+        let remainHour = countNotification
+        
+        notificateTime(current: 1, countNotification: countNotification, remainNotification: remainNotification, remainHour: remainHour, TimeString: "notification")
+    }
+    
+    // MARK: 알림 예약 설정
+    func notificateTime(current: Int, countNotification: Int, remainNotification: Int, remainHour: Int, TimeString: String) {
         if current <= countNotification {
             let contentNotification = UNMutableNotificationContent()
             contentNotification.title = "지금자면 🛌"
@@ -223,58 +258,30 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
             let requestTime = UNNotificationRequest(identifier: TimeString, content: contentNotification, trigger: triggerTime)
             UNUserNotificationCenter.current().add(requestTime, withCompletionHandler: nil)
             
-            self.notificationTime(current: current + 1, countNotification: countNotification, remainNotification: remainNotification + (timeInterval * 60), remainHour: remainHour - 1, TimeString: "\(current)")
+            self.notificateTime(current: current + 1, countNotification: countNotification, remainNotification: remainNotification + (timeInterval * 60), remainHour: remainHour - 1, TimeString: "\(current)")
         }
     }
-}
-
-// MARK: - feature: Notification
-extension HomeViewController {
-    @objc func updateTime() {
+    
+    // MARK: 알람 예약 설정
+    func setAlarm() {
+        // 일어날 시간
         let formatter = DateFormatter()
-        let date = Date()
-        formatter.dateFormat = "dd HH:mm:ss"
-        let nowTime = formatter.string(from: date as Date)
-        let currentTime = formatter.date(from: nowTime)!
-        let diff = Int(alarmTime?.timeIntervalSince(currentTime) ?? 0)
-    
-        if diff <= 0 {
-            lblRemainTime.text = "00 : 00 : 00"
-            lblRemainTime.textColor = UIColor.white
-            lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .thin)
-            
-            audioPlayerFlag = true
-            audioFile = Bundle.main.url(forResource: sound, withExtension: "mp3")
-            initSoundPlayer()
-            audioPlayer.play()
-            
-            vibrationFlag = true
-            vibration()
-            
-            initializeTimer()
-            return
-        }
-
-        var diffTemp = diff
+        var alarmDate = DateComponents()
+        formatter.dateFormat = "HH"
+        let alarmHour = formatter.string(from: datePicker.date)
+        alarmDate.hour = Int(alarmHour)
+        formatter.dateFormat = "mm"
+        let alarmMin = formatter.string(from: datePicker.date)
+        alarmDate.minute = Int(alarmMin)
         
-        // MARK: 남은 시간 계산
-        let sec = integerToString(diffTemp%60)
-        diffTemp = diffTemp/60
-        let min = integerToString(diffTemp%60)
-        diffTemp = diffTemp/60
-        let hour = integerToString(diffTemp)
+        // 알람 notification 예약
+        let content = UNMutableNotificationContent()
+        content.title = "지금자면 🛌"
+        content.body = "일어날 시간 입니다!"
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "\(sound).mp3"))
         
-        let timeString = "\(hour) : \(min) : \(sec)"
-        lblRemainTime.text = timeString
-        lblRemainTime.textColor = UIColor.white
-        lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .thin)
-    }
-    
-    func integerToString(_ number: Int) -> String {
-        if number < 10 {
-            return "0" + String(number)
-        } else {
-            return String(number)
-        }
+        let trigger = UNCalendarNotificationTrigger(dateMatching: alarmDate, repeats: false)
+        let request = UNNotificationRequest(identifier: "timerdone", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
 }
