@@ -242,23 +242,42 @@ extension HomeViewController {
     func startNotification(_ timeDifferent: Int) {
         let countNotification = timeDifferent / (timeInterval * 60)
         let remainNotification = timeDifferent % (timeInterval * 60)
-        let remainHour = countNotification
+        let remainSecond = countNotification * (timeInterval * 60)
         
-        notificateTime(current: 1, countNotification: countNotification, remainNotification: remainNotification, remainHour: remainHour, TimeString: "notification")
+        notificateTime(current: 1, countNotification: countNotification, remainNotification: remainNotification, remainSecond: remainSecond, TimeString: "notification")
     }
     
     // MARK: 알림 예약 설정
-    func notificateTime(current: Int, countNotification: Int, remainNotification: Int, remainHour: Int, TimeString: String) {
+    func notificateTime(current: Int, countNotification: Int, remainNotification: Int, remainSecond: Int, TimeString: String) {
+        var remainSecond = remainSecond
+        
         if current <= countNotification {
             let contentNotification = UNMutableNotificationContent()
             contentNotification.title = "지금자면 🛌"
-            contentNotification.body = "\(remainHour)시간 잘 수 있습니다!"
+            
+            if timeInterval == 60 {
+                remainSecond = remainSecond/(timeInterval * 60)
+                contentNotification.body = "\(remainSecond)시간 잘 수 있습니다."
+            }
+            else {
+                remainSecond = remainSecond/60
+                let min = remainSecond%60
+                let hour = remainSecond/60
+                
+                if min == 0 {
+                    contentNotification.body = "\(hour)시간 잘 수 있습니다."
+                }
+                else {
+                    contentNotification.body = "\(hour)시간 \(min)분 잘 수 있습니다."
+                }
+                
+            }
             
             let triggerTime = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(remainNotification), repeats: false)
             let requestTime = UNNotificationRequest(identifier: TimeString, content: contentNotification, trigger: triggerTime)
             UNUserNotificationCenter.current().add(requestTime, withCompletionHandler: nil)
             
-            self.notificateTime(current: current + 1, countNotification: countNotification, remainNotification: remainNotification + (timeInterval * 60), remainHour: remainHour - 1, TimeString: "\(current)")
+            self.notificateTime(current: current + 1, countNotification: countNotification, remainNotification: remainNotification + (timeInterval * 60), remainSecond: remainSecond - (timeInterval * 60), TimeString: "\(current)")
         }
     }
     
