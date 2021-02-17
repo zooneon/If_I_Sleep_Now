@@ -85,6 +85,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
             setRemainTimeLabel(remainTimeDic)
             startTimer()
             startNotification(timeDifferent)
+            setWarningMessage()
             setAlarm()
         }
         else {
@@ -281,6 +282,16 @@ extension HomeViewController {
             
             self.notificateTime(current: current + 1, countNotification: countNotification, remainNotification: remainNotification + (timeInterval * 60), remainSecond: remainSecond - (timeInterval * 60), TimeString: "\(current)")
         }
+    }
+    
+    func setWarningMessage() {
+        let content = UNMutableNotificationContent()
+        content.title = "지금자면 🛌"
+        content.body = "무음모드 시 알림음이 울리지 않습니다. 소리를 켜주세요."
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 90, repeats: false)
+        let request = UNNotificationRequest(identifier: "warning", content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
     
     // MARK: 알람 예약 설정
