@@ -116,6 +116,14 @@ extension SoundViewController: UITableViewDelegate {
         
         audioFile = Bundle.main.url(forResource: sound, withExtension: "mp3")
         initSoundPlayer()
+
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print(error)
+        }
+
         audioPlayer.play()
     }
     

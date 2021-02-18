@@ -197,8 +197,10 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
     
     func startVibration(current: Int, max: Int) {
         AudioServicesPlayAlertSoundWithCompletion(kSystemSoundID_Vibrate) {
-            if current <= max {
-                self.startVibration(current: current + 1, max: max)
+            if self.vibrationFlag == true {
+                if current <= max {
+                    self.startVibration(current: current + 1, max: max)
+                }
             }
         }
     }
@@ -225,7 +227,15 @@ extension HomeViewController {
             // 알람 소리 설정
             audioPlayerFlag = true
             audioFile = Bundle.main.url(forResource: sound, withExtension: "mp3")
+
             initSoundPlayer()
+            do {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+                try AVAudioSession.sharedInstance().setActive(true)
+            } catch {
+                print(error)
+            }
+
             audioPlayer.play()
             // 알람 진동 설정
             vibrationFlag = true
