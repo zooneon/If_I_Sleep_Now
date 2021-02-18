@@ -190,19 +190,15 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: audioFile)
             audioPlayer.volume = 63.5
-            audioPlayer.numberOfLoops = -1
         } catch let error as NSError {
             print("initError : \(error)")
         }
     }
     
-    func startVibration() {
+    func startVibration(current: Int, max: Int) {
         AudioServicesPlayAlertSoundWithCompletion(kSystemSoundID_Vibrate) {
-            if self.vibrationFlag == true {
-                self.startVibration()
-            }
-            else {
-                return
+            if current <= max {
+                self.startVibration(current: current + 1, max: max)
             }
         }
     }
@@ -233,7 +229,7 @@ extension HomeViewController {
             audioPlayer.play()
             // 알람 진동 설정
             vibrationFlag = true
-            startVibration()
+            startVibration(current: 1, max: 50)
             // 타이머 초기화
             initializeTimer()
             return
