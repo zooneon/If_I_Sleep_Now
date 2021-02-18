@@ -74,6 +74,13 @@ class SoundViewController: UIViewController, AVAudioPlayerDelegate {
         } catch let error as NSError {
             print("Error-initPlay : \(error)")
         }
+        // 오디오 강제 재생
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print(error)
+        }
     }
 }
 
@@ -116,14 +123,6 @@ extension SoundViewController: UITableViewDelegate {
         
         audioFile = Bundle.main.url(forResource: sound, withExtension: "mp3")
         initSoundPlayer()
-
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
-            try AVAudioSession.sharedInstance().setActive(true)
-        } catch {
-            print(error)
-        }
-
         audioPlayer.play()
     }
     

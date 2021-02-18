@@ -131,6 +131,17 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         btnStartFlag = false
         btnStart.setTitle("그만", for: .normal)
     }
+    
+    func startAlarm() {
+        // 알람 소리 설정
+        audioPlayerFlag = true
+        audioFile = Bundle.main.url(forResource: sound, withExtension: "mp3")
+        initSoundPlayer()
+        audioPlayer.play()
+        // 알람 진동 설정
+        vibrationFlag = true
+        startVibration(current: 1, max: 50)
+    }
     // 타이머 초기화
     func initializeTimer() {
         diffFlag = false
@@ -193,6 +204,13 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
         } catch let error as NSError {
             print("initError : \(error)")
         }
+        // 오디오 강제 재생
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print(error)
+        }
     }
     
     func startVibration(current: Int, max: Int) {
@@ -221,26 +239,8 @@ extension HomeViewController {
     @objc func updateTime() {
         let timeDifferent = calculateTimeDifferent()
         if timeDifferent <= 0 {
-            lblRemainTime.text = "00 : 00 : 00"
-            lblRemainTime.textColor = UIColor.white
-            lblRemainTime.font = UIFont.systemFont(ofSize: 55, weight: .thin)
-            // 알람 소리 설정
-            audioPlayerFlag = true
-            audioFile = Bundle.main.url(forResource: sound, withExtension: "mp3")
-
-            initSoundPlayer()
-            do {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
-                try AVAudioSession.sharedInstance().setActive(true)
-            } catch {
-                print(error)
-            }
-
-            audioPlayer.play()
-            // 알람 진동 설정
-            vibrationFlag = true
-            startVibration(current: 1, max: 50)
-            // 타이머 초기화
+            setRemainTimeLabel(["hour": "00", "min": "00", "sec": "00"])
+            startAlarm()
             initializeTimer()
             return
         }
