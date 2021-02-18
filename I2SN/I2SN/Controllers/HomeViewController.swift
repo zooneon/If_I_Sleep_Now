@@ -93,13 +93,7 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
             changeState()
             // 모든 알림 삭제
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-            // 알람 소리 종료
-            if audioPlayerFlag == true {
-                audioPlayer.stop()
-                audioPlayerFlag = false
-            }
-            // 알람 진동 종료
-            vibrationFlag = false
+            setAlarmOff()
         }
     }
     
@@ -211,6 +205,16 @@ class HomeViewController: UIViewController, AVAudioPlayerDelegate {
                 return
             }
         }
+    }
+    
+    func setAlarmOff() {
+        // 알람 소리 종료
+        if audioPlayerFlag == true {
+            audioPlayer.stop()
+            audioPlayerFlag = false
+        }
+        // 알람 진동 종료
+        vibrationFlag = false
     }
 }
 
