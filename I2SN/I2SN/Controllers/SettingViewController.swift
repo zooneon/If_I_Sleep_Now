@@ -10,6 +10,7 @@ import FirebaseAnalytics
 
 class SettingViewController: UIViewController {
 
+    // MARK: - Properties
     @IBOutlet weak var timeTableView: UITableView!
     @IBOutlet weak var soundTableView: UITableView!
     
@@ -18,6 +19,7 @@ class SettingViewController: UIViewController {
     private var timeInterval = 30
     private let userDefaults = UserDefaults.standard
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         assignBackground()
@@ -35,10 +37,12 @@ class SettingViewController: UIViewController {
         self.timeInterval = userDefaults.integer(forKey: DataKeys.timeInterval) != 0 ? userDefaults.integer(forKey: DataKeys.timeInterval) : 30
     }
     
+    // MARK: - Actions
     @IBAction func btnCompleteAction(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)
     }
     
+    // MARK: - Configure UI
     func assignBackground(){
         let background = UIImage(named: "background.jpg")
 
@@ -54,6 +58,7 @@ class SettingViewController: UIViewController {
     
     func setNavigationBar() {
         navigationItem.hidesBackButton = true
+        navigationController?.navigationBar.barStyle = .black
     }
     
     func setTableViewLayout() {
@@ -81,11 +86,17 @@ extension SettingViewController: UITableViewDataSource {
         if tableView == timeTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TimeCell", for: indexPath)
             cell.textLabel?.text = "\(timeIntervalArray[indexPath.row])분"
+            cell.textLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+            cell.textLabel?.textColor = .black
+            cell.backgroundColor = .white
             return cell
         }
         if tableView == soundTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SoundCell", for: indexPath)
             cell.textLabel?.text = "알람음 선택"
+            cell.textLabel?.font = .systemFont(ofSize: 15, weight: .medium)
+            cell.textLabel?.textColor = .black
+            cell.backgroundColor = .white
             return cell
         }
         
