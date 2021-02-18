@@ -277,7 +277,7 @@ extension HomeViewController {
                         contentNotification.body = "\(remainMin)분 잘 수 있습니다."
                     }
                     else {
-                        contentNotification.body = "\(remainHour)시간 \(remainMin)분 잘 수 있습니다."
+                        contentNotification.body = "\(remainHour)시간\(remainMin)분 잘 수 있습니다."
                     }
                 }
             }
@@ -293,7 +293,7 @@ extension HomeViewController {
     func setWarningMessage() {
         let content = UNMutableNotificationContent()
         content.title = "지금자면 🛌"
-        content.body = "무음모드 시 알림음이 울리지 않습니다. 소리를 켜주세요."
+        content.body = "무음모드 시 알람음이 울리지 않습니다. 소리를 켜주세요."
         
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 90, repeats: false)
         let request = UNNotificationRequest(identifier: "warning", content: content, trigger: trigger)
