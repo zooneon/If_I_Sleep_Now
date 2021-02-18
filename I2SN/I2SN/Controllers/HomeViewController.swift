@@ -295,7 +295,7 @@ extension HomeViewController {
         content.title = "지금자면 🛌"
         content.body = "무음모드 시 알람음이 울리지 않습니다. 소리를 켜주세요."
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 90, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: false)
         let request = UNNotificationRequest(identifier: "warning", content: content, trigger: trigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
