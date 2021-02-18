@@ -245,7 +245,13 @@ extension HomeViewController {
         let remainNotification = timeDifferent % (timeInterval * 60)
         let remainSecond = countNotification * (timeInterval * 60)
         
-        notificateTime(current: 1, countNotification: countNotification, remainNotification: remainNotification, remainSecond: remainSecond, TimeString: "notification")
+        if countNotification > 6 {
+            notificateTime(current: 1, countNotification: 6, remainNotification: remainNotification, remainSecond: remainSecond, TimeString: "notification")
+        }
+        else {
+            notificateTime(current: 1, countNotification: countNotification, remainNotification: remainNotification, remainSecond: remainSecond, TimeString: "notification")
+        }
+        
     }
     
     // MARK: 알림 예약 설정
@@ -253,7 +259,7 @@ extension HomeViewController {
         if current <= countNotification {
             let contentNotification = UNMutableNotificationContent()
             contentNotification.title = "지금자면 🛌"
-            
+        
             if timeInterval == 60 {
                 let remainHour = remainSecond / (timeInterval * 60)
                 contentNotification.body = "\(remainHour)시간 잘 수 있습니다."
