@@ -3,10 +3,16 @@
 # 지금자면
 > ⏰ 남은 수면시간 알림 서비스
 <br/>
+<div display="flex">
+  <img width="240" height="500" src="https://user-images.githubusercontent.com/59433441/108804046-94d3d700-75df-11eb-82a5-6b37c488630a.png" alt="01.png">
+  <img width="240" height="500" src="https://user-images.githubusercontent.com/59433441/108804165-d6fd1880-75df-11eb-9b68-28bfe65e5864.png" alt="02.png">
+  <img width="470" height="500" src="https://user-images.githubusercontent.com/59433441/108804426-9c47b000-75e0-11eb-8c9b-5d21ab95d067.png" alt="03.png">
+</div>
 
 ## 🚀 Link
 ### [Notion](https://www.notion.so/zzooneon/6632e475a1e24e21ba27f324d981e81e)
 ### [Prototype](https://www.figma.com/file/mfBOZfGSjmmG66m82JGzXM/I2SN-prototype?node-id=0%3A1)
+### [App Store](https://apps.apple.com/kr/app/%EC%A7%80%EA%B8%88%EC%9E%90%EB%A9%B4/id1554865312)
 <br/>
 
 ## ✨ About
@@ -25,7 +31,7 @@
 <br/>
 
 **Main**
-- 시작 버튼을 누르면 기상 시간까지 몇 시간 남았는지 알려주는 알림 기능이 활성화된다.
+- 시작 버튼을 누르면 기상 시간까지 얼마나 남았는지 알려주는 알림 기능이 활성화된다.
 - 시작 버튼을 누르면 잔여시간(시간 : 분 : 초)이 나타난다.
 - 그만 버튼을 누르면 기존의 알림 기능은 취소된다.
 <br/>
