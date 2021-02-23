@@ -4,9 +4,9 @@
 > ⏰ 남은 수면시간 알림 서비스
 <br/>
 <div display="flex">
-  <img width="220" height="480" src="https://user-images.githubusercontent.com/59433441/108804046-94d3d700-75df-11eb-82a5-6b37c488630a.png" alt="01.png">
-  <img width="220" height="480" src="https://user-images.githubusercontent.com/59433441/108804165-d6fd1880-75df-11eb-9b68-28bfe65e5864.png" alt="02.png">
-  <img width="450" height="480" src="https://user-images.githubusercontent.com/59433441/108804426-9c47b000-75e0-11eb-8c9b-5d21ab95d067.png" alt="03.png">
+  <img width="180" height="380" src="https://user-images.githubusercontent.com/59433441/108804046-94d3d700-75df-11eb-82a5-6b37c488630a.png" alt="01.png">
+  <img width="180" height="380" src="https://user-images.githubusercontent.com/59433441/108804165-d6fd1880-75df-11eb-9b68-28bfe65e5864.png" alt="02.png">
+  <img width="370" height="380" src="https://user-images.githubusercontent.com/59433441/108804426-9c47b000-75e0-11eb-8c9b-5d21ab95d067.png" alt="03.png">
 </div>
 
 ## 🚀 Link
